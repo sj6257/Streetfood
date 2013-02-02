@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtView_Category"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/mediumspace"
+                android:paddingRight="@dimen/mediumspace"
+                android:text="Category"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            
+        </LinearLayout>
+     <!-- Horizontal line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="#aaa"
+            />
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.78"
+        android:orientation="vertical" >
+
+         <ListView
+             android:id="@+id/listViewCategory"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" >
+             
+         </ListView>
+        <!-- Horizontal line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="#aaa"
+            />
+     </LinearLayout>
+    
+     
+     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+       >
+           
+            <!-- For Horizontal Line-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="#aaa"
+            android:layout_alignParentTop="true"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+             <RadioGroup 
+                android:id="@+id/radio_group_activity_selector"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <RadioButton
+                    android:id="@+id/radioList"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/List"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:background="@drawable/shape_radiobutton"
+                    />
+                  <View
+            		android:id="@+id/VerticalLine"
+            		android:layout_width="1dip"
+            		android:layout_height="wrap_content"
+            		android:layout_marginBottom="4dip"
+            		android:layout_marginTop="4dip"
+            		android:background="#aaa"
+          	 		/>
+                 <RadioButton
+                    android:id="@+id/radioMap"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/Map"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:background="@drawable/shape_radiobutton"
+                    />
+                 </RadioGroup>
+            
+            </LinearLayout>
+            
+        </RelativeLayout>
+    
+    
+</LinearLayout>

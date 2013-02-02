@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="SmallSpace">5dp</dimen>
+    <dimen name="mediumspace">10dp</dimen>
+    <dimen name="bigspace">25dp</dimen>
+    <dimen name="button80">80dp</dimen>
+</resources>
