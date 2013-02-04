@@ -80,10 +80,11 @@
          <Button
              android:id="@+id/btnRate"
              style="?android:attr/buttonStyleSmall"
-             android:layout_width="80dp"
+             android:layout_width="70dp"
              android:layout_height="wrap_content"
-             
-             android:paddingRight="@dimen/mediumspace"
+             android:background="@drawable/shape_button"
+            android:layout_marginRight="4dp"
+             android:textColor="@drawable/textcolor_radiobutton"
              android:text="Rate" />
         
     </LinearLayout>
@@ -133,10 +134,11 @@
 
 
      </LinearLayout>
+     
      <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        >
+       >
            
             <!-- For Horizontal Line-->
         <View
@@ -169,14 +171,19 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:background="@drawable/shape_radiobutton"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:textColor="@drawable/textcolor_radiobutton"                
                     />
                   <View
-            		android:id="@+id/VerticalLine"
+                	android:id="@+id/VerticalLine"
             		android:layout_width="1dip"
             		android:layout_height="wrap_content"
             		android:layout_marginBottom="4dip"
             		android:layout_marginTop="4dip"
             		android:background="#aaa"
+            		
           	 		/>
                  <RadioButton
                     android:id="@+id/radioMap"
@@ -186,7 +193,12 @@
                     android:text="@string/Map"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:background="@drawable/shape_radiobutton"
+                    android:background="@drawable/shape_radiobutton3"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@drawable/textcolor_radiobutton"
+                    android:layout_marginRight="4dp"
+                   
                     />
                  </RadioGroup>
             
@@ -195,4 +207,3 @@
         </RelativeLayout>
      
      </LinearLayout>
-
