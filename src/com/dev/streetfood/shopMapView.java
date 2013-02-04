@@ -15,10 +15,12 @@ import android.support.v4.app.FragmentActivity;
 
 import android.annotation.TargetApi;
 public class ShopMapView extends FragmentActivity {
-  static final LatLng HAMBURG = new LatLng(32.7300, 74.8700);
-	  static final LatLng KIEL = new LatLng(32.7500, 74.8700);
-	  static final LatLng Ish = new LatLng(32.7400, 74.8700);
+  static final LatLng cafeDurga = new LatLng( 18.510398, 73.816323);
+	  static final LatLng anaraseSamosevale = new LatLng(18.512167, 73.845769);
+	  static final LatLng GardenVadapav = new LatLng(18.517681, 73.877832);
 	  private GoogleMap mmap;
+	  
+	 
 	   @TargetApi(11)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,22 +33,22 @@ public class ShopMapView extends FragmentActivity {
         .getMap();
        //addingmaker();
     mmap.addMarker(new MarkerOptions()
-    	.position(HAMBURG)
-        .title("Pahalwan")
-        .snippet("I am in Jammu"));
+    	.position(cafeDurga)
+        .title("Cafe Durga")
+        .snippet("Place Famous for Cold Coffee"));
    mmap.addMarker(new MarkerOptions()
-        .position(KIEL)
-        .title("Ankush Home")
-        .snippet("Hi Ankush")
+        .position(anaraseSamosevale)
+        .title("Anarase Samosevale")
+        .snippet("Best Samosa in Pune")
         );
     mmap.addMarker(new MarkerOptions()
-    .position(Ish)
-    .title("Ishan Home")
-    .snippet("Hi Ishan")
+    .position(GardenVadapav)
+    .title("JJ Garden Vada Pav")
+    .snippet("Famous Vada Pav Center in Pune")
     );
 
     // Move the camera instantly to hamburg with a zoom of 15.
-    mmap.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
+    mmap.moveCamera(CameraUpdateFactory.newLatLngZoom(anaraseSamosevale, 15));
 
     // Zoom in, animating the camera.
     mmap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
