@@ -135,7 +135,7 @@ public class ShopCategoryView extends Activity {
 	
 	public void goToMapView()
 	{
-		 Intent intent = new Intent(getApplicationContext(),ShopListView.class); // change it to Map Activity
+		 Intent intent = new Intent(getApplicationContext(),ShopMapView.class); // change it to Map Activity
 		 //start the DisplayActivity
          startActivity(intent);
 	}
