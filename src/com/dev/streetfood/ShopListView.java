@@ -305,6 +305,12 @@ public class ShopListView extends Activity {
 	   RadioButton ListRadioNearBy=(RadioButton) findViewById(R.id.radioNearBy);
 	   ListRadioNearBy.setChecked(false);	
    }
+   
+   @Override
+   public void onBackPressed(){
+	     // do something here and don't write super.onBackPressed()
+	       finish();
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
