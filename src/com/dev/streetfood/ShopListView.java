@@ -157,7 +157,7 @@ public class ShopListView extends Activity {
 	
 	public void goToMapView()
 	{
-		 Intent intent = new Intent(getApplicationContext(),ShopListView.class); // change it to Map Activity
+		 Intent intent = new Intent(this,ShopMapView.class); // change it to Map Activity
 		 //start the DisplayActivity
          startActivity(intent);
 	}
