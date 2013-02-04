@@ -12,5 +12,5 @@
     <string name="Map">Map</string>
     <string name="title_activity_shop_detail_view">DetailView</string>
     <string name="title_activity_shop_category_view">ShopCategoryView</string>
-
+	  <string name="title_activity_shop_map_view">ShopMapView</string>
 </resources>
