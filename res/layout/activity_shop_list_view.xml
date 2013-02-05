@@ -124,7 +124,8 @@
         android:layout_weight="0.78"
         android:orientation="vertical"
         android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip" >
+        android:layout_marginRight="4dip"
+        android:background="@drawable/layout_border">
 
          <ListView
              android:id="@+id/listView1"
@@ -132,7 +133,7 @@
              android:layout_height="wrap_content"
              android:listSelector="@drawable/list_selector"
              android:textColor="@drawable/textcolor_radiobutton" 
-             android:background="@drawable/shape_listview"
+             
               >
          </ListView>
       

@@ -7,38 +7,39 @@
         <LinearLayout 
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/textview_roundedge"
+            android:layout_marginLeft="4dip"
+        	android:layout_marginRight="4dip"
+        	android:layout_marginTop="2dip"
+        	android:layout_marginBottom="2dip">
 
             <TextView
                 android:id="@+id/txtView_Category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="left|center_vertical"
-                android:paddingLeft="@dimen/mediumspace"
-                android:paddingRight="@dimen/mediumspace"
+                android:gravity="center_vertical|center_horizontal|center"
                 android:text="Category"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-            
+             
         </LinearLayout>
-     <!-- Horizontal line -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:layout_marginLeft="4dip"
-            android:layout_marginRight="4dip"
-            android:background="#aaa"
-            />
     
      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.78"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:background="@drawable/layout_border"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip" >
 
          <ListView
              android:id="@+id/listViewCategory"
              android:layout_width="match_parent"
-             android:layout_height="wrap_content" >
+             android:layout_height="wrap_content"
+             android:listSelector="@drawable/list_selector"
+             android:textColor="@drawable/textcolor_radiobutton" 
+             >
              
          </ListView>
         <!-- Horizontal line -->
@@ -51,20 +52,19 @@
             />
      </LinearLayout>
     
-     
-     <RelativeLayout
+      <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
        >
            
             <!-- For Horizontal Line-->
-        <View
+        <!-- <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:background="#aaa"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"/> -->
         
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,6 +88,10 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:background="@drawable/shape_radiobutton"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:textColor="@drawable/textcolor_radiobutton"                
                     />
                   <View
             		android:id="@+id/VerticalLine"
@@ -96,6 +100,7 @@
             		android:layout_marginBottom="4dip"
             		android:layout_marginTop="4dip"
             		android:background="#aaa"
+            		
           	 		/>
                  <RadioButton
                     android:id="@+id/radioMap"
@@ -105,7 +110,12 @@
                     android:text="@string/Map"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:background="@drawable/shape_radiobutton"
+                    android:background="@drawable/shape_radiobutton3"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@drawable/textcolor_radiobutton"
+                    android:layout_marginRight="4dp"
+                   
                     />
                  </RadioGroup>
             
@@ -113,5 +123,6 @@
             
         </RelativeLayout>
     
+   
     
 </LinearLayout>
