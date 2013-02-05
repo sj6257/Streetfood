@@ -8,7 +8,7 @@
     <item android:state_pressed="true"
         android:drawable="@drawable/list_gradient_bg_hover" />
  
-    <item android:state_selected="true"
+   <!--  <item android:state_selected="true"
   
-        android:drawable="@drawable/list_gradient_bg_hover" />
+        android:drawable="@drawable/list_gradient_bg_hover" /> -->
 </selector>
