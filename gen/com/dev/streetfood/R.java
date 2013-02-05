@@ -136,11 +136,15 @@ containing a value of this type.
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int internet=0x7f020001;
-        public static final int shape_button=0x7f020002;
-        public static final int shape_radiobutton=0x7f020003;
-        public static final int shape_radiobutton2=0x7f020004;
-        public static final int shape_radiobutton3=0x7f020005;
-        public static final int textcolor_radiobutton=0x7f020006;
+        public static final int list_gradient_bg=0x7f020002;
+        public static final int list_gradient_bg_hover=0x7f020003;
+        public static final int list_selector=0x7f020004;
+        public static final int shape_button=0x7f020005;
+        public static final int shape_listview=0x7f020006;
+        public static final int shape_radiobutton=0x7f020007;
+        public static final int shape_radiobutton2=0x7f020008;
+        public static final int shape_radiobutton3=0x7f020009;
+        public static final int textcolor_radiobutton=0x7f02000a;
     }
     public static final class id {
         public static final int VerticalLine=0x7f040008;
