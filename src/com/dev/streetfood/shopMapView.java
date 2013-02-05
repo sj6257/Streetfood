@@ -1,5 +1,6 @@
 package com.dev.streetfood;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +19,7 @@ public class ShopMapView extends FragmentActivity {
   static final LatLng cafeDurga = new LatLng( 18.510398, 73.816323);
 	  static final LatLng anaraseSamosevale = new LatLng(18.512167, 73.845769);
 	  static final LatLng GardenVadapav = new LatLng(18.517681, 73.877832);
+	private static final String TAG = "ShopMapView";
 	  private GoogleMap mmap;
 	  
 	 
@@ -27,6 +29,18 @@ public class ShopMapView extends FragmentActivity {
 		   Log.d("I am map","Map");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_map_view);
+     // to hide the action bar
+     		try
+     		{
+     		ActionBar actionBar = getActionBar();
+     		actionBar.hide();
+     		}
+     		catch (Exception ex)
+     		{
+     		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+     		  
+     		}
+     		
         Intent intent=getIntent();
         //Bundle b = getIntent().getExtras();
           mmap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
