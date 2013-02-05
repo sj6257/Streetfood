@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -294,23 +295,16 @@ public class ShopListView extends Activity {
 	       
 	    }
 
-   public void setListRadiosUnchecked()
-   {
-	   RadioButton ListRadioPopular=(RadioButton) findViewById(R.id.radioPopular);
-	   ListRadioPopular.setChecked(false);
-	   RadioButton ListRadioAZ=(RadioButton) findViewById(R.id.radioAZ);
-	   ListRadioAZ.setChecked(false);	
-	   RadioButton ListRadioCategory=(RadioButton) findViewById(R.id.radioCategory);
-	   ListRadioCategory.setChecked(false);	
-	   RadioButton ListRadioNearBy=(RadioButton) findViewById(R.id.radioNearBy);
-	   ListRadioNearBy.setChecked(false);	
-   }
-   
+  
    @Override
-   public void onBackPressed(){
-	     // do something here and don't write super.onBackPressed()
-	       finish();
-	}
+   public boolean onKeyDown(int keyCode, KeyEvent event)
+   {
+       if ((keyCode == KeyEvent.KEYCODE_BACK))
+       {
+           finish();
+       }
+       return super.onKeyDown(keyCode, event);
+   }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
