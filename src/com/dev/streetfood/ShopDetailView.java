@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -107,6 +108,20 @@ public class ShopDetailView extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_shop_detail_view, menu);
 		return true;
+	}
+	
+	
+	@Override
+	protected void onStart() {
+	    super.onStart();
+	  //default show Popular Shops
+	    
+	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
+  		ListRadioButton.setChecked(false);
+  		 RadioButton MapRadioButton=(RadioButton) findViewById(R.id.radioMap);
+  		MapRadioButton.setChecked(false);
+  		
+  		
 	}
 
 }

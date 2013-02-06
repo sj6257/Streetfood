@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -138,6 +139,18 @@ public class ShopCategoryView extends Activity {
 		 Intent intent = new Intent(getApplicationContext(),ShopMapView.class); // change it to Map Activity
 		 //start the DisplayActivity
          startActivity(intent);
+	}
+	
+	@Override
+	protected void onStart() {
+	    super.onStart();
+	 
+	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
+  		ListRadioButton.setChecked(false);
+  		 RadioButton MapRadioButton=(RadioButton) findViewById(R.id.radioMap);
+  		MapRadioButton.setChecked(false);
+  		
+  		
 	}
 	
 	@Override
