@@ -58,7 +58,7 @@ public class ShopDetailView extends Activity {
 		txtShopName.setText(shopName);
 		
 		TextView txtShopInfo = (TextView) findViewById(R.id.txtShopInfo);	
-		TextView txtRating = (TextView) findViewById(R.id.txtRating);	
+		//TextView txtRating = (TextView) findViewById(R.id.txtRating);	
 		TextView txtAddress = (TextView) findViewById(R.id.txtAddress);	
 			
 		// get relevant info from db
@@ -70,11 +70,11 @@ public class ShopDetailView extends Activity {
 		txtShopInfo.setText(info);
 		Log.i(TAG,info);
 		
-		sql="select ifnull(ratings,0)  from streetShopInfo where shopName=\""+shopName+"\"";
+		/*sql="select ifnull(ratings,0)  from streetShopInfo where shopName=\""+shopName+"\"";
 		int ratings=mDBAdapter.getSingleIntVal(sql);
 		String ratingsinstring=String.valueOf(ratings);
 		txtRating.setText(ratingsinstring);
-		Log.i(TAG,"Got Rating");
+		Log.i(TAG,"Got Rating");*/
 	
 		sql="select ifnull(address,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
 		String address=mDBAdapter.getSingleStringVal(sql);
