@@ -16,6 +16,7 @@ public class ShopDetailView extends Activity {
 
 	private static final String TAG = "ShowDetails";
 	String sql;
+	String shopName;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,18 +53,18 @@ public class ShopDetailView extends Activity {
 	    });
 		
 		Bundle b = getIntent().getExtras();
-		String shopName=(String) b.get("itemName");
+		shopName=(String) b.get("itemName");
 		
 		
 		TextView txtShopName = (TextView) findViewById(R.id.txtShopName);	
 		txtShopName.setText(shopName);
-		
+
 		TextView txtShopInfo = (TextView) findViewById(R.id.txtShopInfo);	
 		//TextView txtRating = (TextView) findViewById(R.id.txtRating);	
 		TextView txtAddress = (TextView) findViewById(R.id.txtAddress);	
 			
 		// get relevant info from db
-		sql="select ifnull(info,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
+		sql="select ifnull(shopInfo,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		mDBAdapter.createDatabase();       
 		mDBAdapter.open();
@@ -71,13 +72,9 @@ public class ShopDetailView extends Activity {
 		txtShopInfo.setText(info);
 		Log.i(TAG,info);
 		
-		/*sql="select ifnull(ratings,0)  from streetShopInfo where shopName=\""+shopName+"\"";
-		int ratings=mDBAdapter.getSingleIntVal(sql);
-		String ratingsinstring=String.valueOf(ratings);
-		txtRating.setText(ratingsinstring);
-		Log.i(TAG,"Got Rating");*/
+		
 	
-		sql="select ifnull(address,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
+		sql="select ifnull(address1,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
 		String address=mDBAdapter.getSingleStringVal(sql);
 		txtAddress.setText("Address: \n"+address);
 		Log.i(TAG,"Got Address:"+address);
@@ -95,8 +92,14 @@ public class ShopDetailView extends Activity {
 	
 	public void goToMapView()
 	{
+	
+		
 		 Intent intent = new Intent(getApplicationContext(),ShopMapView.class); // change it to Map Activity
-		 //start the DisplayActivity
+		 Bundle b = new Bundle();
+         //Inserts a String value into the mapping of this Bundle
+         b.putString("itemName",shopName);
+         b.putString("view","Detail");
+         intent.putExtras(b);
          startActivity(intent);
 	}
 	
