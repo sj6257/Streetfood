@@ -86,9 +86,9 @@ public class ShopListView extends Activity {
 	               break;
 	  		  case R.id.radioNearBy :
 	  			  Log.i(TAG,"NearBy Radio Button Selected");
-	  			  showNearByStalls();
+	  			showNearBy();
 	               break;
-	  		  default: fetured();
+	  		  default: showFeatured();
 	  		      Log.i(TAG,"No Radio Selected");
 	  		 
 	  		}
@@ -116,12 +116,15 @@ public class ShopListView extends Activity {
 		         {
 		          Log.i(TAG,"flagCategory : True");
 		         intent = new Intent(getApplicationContext(), ShopCategoryView.class);
+		         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		         
 		         flagCategory=false;
 		         Log.i(TAG,"flagCategory forced to : False");
 		         }
 		         else
 		         {
             	 intent = new Intent(getApplicationContext(), ShopDetailView.class);
+            	 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             	 Log.i(TAG,"flagCategory : false");
 		         }
 		         //Create a bundle object
@@ -159,17 +162,21 @@ public class ShopListView extends Activity {
 	public void goToMapView()
 	{
 		 Intent intent = new Intent(this,ShopMapView.class); // change it to Map Activity
-		 //start the DisplayActivity
+		 Bundle b = new Bundle();
+         //Inserts a String value into the mapping of this Bundle
+         b.putString("itemName","List");
+         b.putString("view","List");
+         intent.putExtras(b);
          startActivity(intent);
 	}
 	
 
-	public void fetured()
+	public void showFeatured()
 	{
 		flagCategory=false;
 		Log.i(TAG,"Populating fetured Stall list");
 		ArrayList<String> list=new ArrayList<String>();
-		String sql="select  shopName from streetShopInfo where ratings >3 order by shopName";
+		String sql="select  S.shopName from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -186,7 +193,7 @@ public class ShopListView extends Activity {
 	public void showPopular(){
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
-		String sql="select  shopName from streetShopInfo where ratings >3 order by shopName";
+		String sql="select  S.shopName shopName from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -200,7 +207,7 @@ public class ShopListView extends Activity {
 		mDBAdapter.close();
 	}
 
-	public void showNearByStalls() {
+	public void showNearBy() {
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
 		String sql="select shopName from streetShopInfo LIMIT 10";
@@ -259,9 +266,7 @@ public class ShopListView extends Activity {
 
 	}
 	
-	public void showMaps(){
-
-	}
+	
 
 	@Override
 	protected void onStart() {
@@ -282,8 +287,8 @@ public class ShopListView extends Activity {
 	    else if (ListRadioCategory.isChecked())
 	        showCategory();
 	    else if (ListRadioNearBy.isChecked())
-	    	showNearByStalls();
-	    else fetured();
+	    	showNearBy();
+	    else showFeatured();
 	  		     
 	  				
 	}
