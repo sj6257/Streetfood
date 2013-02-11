@@ -23,6 +23,7 @@ public class ShopCategoryView extends Activity {
 	protected static final String TAG = "ShopCategoryView";
 	String sql;
 	ListView ListShopInfo;
+	String category;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class ShopCategoryView extends Activity {
 	    });
 		
 		Bundle b = getIntent().getExtras();
-		String category=(String) b.get("itemName");
+		category=(String) b.get("itemName");
 		
 		
 		TextView txtCategory = (TextView) findViewById(R.id.txtView_Category);	
@@ -137,8 +138,13 @@ public class ShopCategoryView extends Activity {
 	public void goToMapView()
 	{
 		 Intent intent = new Intent(getApplicationContext(),ShopMapView.class); // change it to Map Activity
-		 //start the DisplayActivity
+		 Bundle b = new Bundle();
+         //Inserts a String value into the mapping of this Bundle
+         b.putString("itemName",category);
+         b.putString("view","Category");
+         intent.putExtras(b);
          startActivity(intent);
+
 	}
 	
 	@Override
