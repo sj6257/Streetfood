@@ -162,8 +162,8 @@ containing a value of this type.
         public static final int linearLayout1=0x7f04000d;
         public static final int listView1=0x7f040023;
         public static final int listViewCategory=0x7f040005;
-        public static final int map=0x7f040024;
-        public static final int menu_settings=0x7f040025;
+        public static final int map=0x7f040025;
+        public static final int menu_settings=0x7f040026;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
         public static final int radioAZ=0x7f040020;
@@ -174,6 +174,7 @@ containing a value of this type.
         public static final int radioPopular=0x7f04001f;
         public static final int radio_group_activity_selector=0x7f040006;
         public static final int radio_group_list_selector=0x7f04001e;
+        public static final int radio_group_map_selector=0x7f040024;
         public static final int satellite=0x7f040002;
         public static final int saveSearchButton=0x7f04001d;
         public static final int secondColumn=0x7f040011;
