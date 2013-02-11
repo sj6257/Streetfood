@@ -2,6 +2,8 @@ package com.dev.streetfood;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 //import android.content.ContentValues; //Need While inserting values
 import android.content.Context;
@@ -243,5 +245,56 @@ public class StreetFoodDataBaseAdapter {
  		}
  	}
  	*/
+    
+    public ArrayList<BookMark> getInfoForMap(String sql)
+    {
+    	ArrayList<BookMark> result = new ArrayList<BookMark>();
+    	
+    	Log.i(TAG,"Getting Information..");
+    	Cursor mCur=null;
+    	try 
+        { 
+             
+            Log.i(TAG,"Executing Query: "+sql);
+            mCur = mDb.rawQuery(sql, null); 
+            Log.i(TAG,"Query Executed Successfully");
+            if(mCur!=null)
+            {
+            if  (mCur.moveToFirst()) 
+            {
+                
+               do {
+                    	      	  
+                   String shopName = mCur.getString(mCur.getColumnIndex("shopName"));
+                   String shopInfo = mCur.getString(mCur.getColumnIndex("shopInfo"));
+                   double latitude=  mCur.getFloat(mCur.getColumnIndex("latitude"));
+                   double longitude= mCur.getFloat(mCur.getColumnIndex("longitude"));
+                  
+                  // Log.i(TAG,"BookMark: "+shopName+":"+shopInfo+":"+Double.toString(latitude)+":"+Double.toString(longitude));
+                   BookMark b1=new BookMark(shopName,shopInfo,latitude,longitude);
+                   result.add(b1);
+                  
+                   
+               }while (mCur.moveToNext());
+                     
+               mCur.close();
+                	}
+             else
+             {
+                	mCur.close();
+                	Log.e(TAG,"No Data Received from Query");
+             }
+           }
+            
+            				 
+        }
+        catch (Exception e)  
+        { 
+            Log.e(TAG, "getInfo >>"+ e.toString()); 
+           // throw mSQLException; 
+        } 
+		return result;
+    	
+    }
     
 }
