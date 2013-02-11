@@ -1,11 +1,19 @@
 package com.dev.streetfood;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -16,17 +24,15 @@ import android.support.v4.app.FragmentActivity;
 
 import android.annotation.TargetApi;
 public class ShopMapView extends FragmentActivity {
-  static final LatLng cafeDurga = new LatLng( 18.510398, 73.816323);
-	  static final LatLng anaraseSamosevale = new LatLng(18.512167, 73.845769);
-	  static final LatLng GardenVadapav = new LatLng(18.517681, 73.877832);
+  
 	private static final String TAG = "ShopMapView";
-	  private GoogleMap mmap;
+	private GoogleMap mmap;
 	  
 	 
 	   @TargetApi(11)
     @Override
     public void onCreate(Bundle savedInstanceState) {
-		   Log.d("I am map","Map");
+		   Log.i(TAG,"In ShopMapView Class");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_map_view);
      // to hide the action bar
@@ -41,33 +47,56 @@ public class ShopMapView extends FragmentActivity {
      		  
      		}
      		
-        Intent intent=getIntent();
+        //Intent intent=getIntent();
         //Bundle b = getIntent().getExtras();
-          mmap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-        .getMap();
-       //addingmaker();
-    mmap.addMarker(new MarkerOptions()
-    	.position(cafeDurga)
-        .title("Cafe Durga")
-        .snippet("Place Famous for Cold Coffee"));
-   mmap.addMarker(new MarkerOptions()
-        .position(anaraseSamosevale)
-        .title("Anarase Samosevale")
-        .snippet("Best Samosa in Pune")
-        );
-    mmap.addMarker(new MarkerOptions()
-    .position(GardenVadapav)
-    .title("JJ Garden Vada Pav")
-    .snippet("Famous Vada Pav Center in Pune")
-    );
-
-    // Move the camera instantly to hamburg with a zoom of 15.
-    mmap.moveCamera(CameraUpdateFactory.newLatLngZoom(anaraseSamosevale, 15));
-
-    // Zoom in, animating the camera.
-    mmap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-    mmap.setMyLocationEnabled(true);
+     		
+     		RadioGroup radioGroupListSelector = (RadioGroup) findViewById(R.id.radio_group_map_selector);
+    		radioGroupListSelector.setOnCheckedChangeListener(new OnCheckedChangeListener() 
+    	    {
+    			
+    	        public void onCheckedChanged(RadioGroup group, int checkedId) {
+    	            // checkedId is the RadioButton selected
+    	      
+    	        	switch (checkedId) {
+    	  		  case R.id.radioPopular : 
+    	  			  Log.i(TAG,"Popular Radio Button Selected");
+    	  			  showPopular();
+    	  			  break;
+    	  		  case R.id.radioAZ :
+    	  			  Log.i(TAG,"AZ Radio Button Selected");
+    	  			  showAZ();
+    	               break;
+    	  		
+    	  		  case R.id.radioNearBy :
+    	  			  Log.i(TAG,"NearBy Radio Button Selected");
+    	  			  showNearBy();
+    	               break;
+    	  		 
+    	  		}
+    	        }
+    	    });		
+     		
+    		Bundle b = getIntent().getExtras();
+    		String item = (String) b.get("itemName");
+    		String fromView=(String) b.get("view");
+     		if(fromView.equals("Detail"))
+     		{
+     		Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+     		showDetail(item);
+     		}
+     		else if(fromView.equals("Category"))
+     		{
+     			Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+     		showCategory(item);
+     		}
+     		else
+     		{
+     			Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+     		showNearBy();
+     		
+     		}
         
+     		//sql="select shopName  from streetShopInfo where category=\""+category+"\"";
     }
 
     @Override
@@ -75,4 +104,148 @@ public class ShopMapView extends FragmentActivity {
         getMenuInflater().inflate(R.menu.activity_shop_map_view, menu);
         return true;
     }
+    
+    
+   void showPopular()
+   {
+	 //Retrieving Values from database
+	    Log.i(TAG,"Populating Popular Stall list");
+	    ArrayList<BookMark> result = new ArrayList<BookMark>();
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
+		Log.i(TAG,"Creating Adapter for Fetching Data");
+		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+		Log.i(TAG,"Adapter Ready..");
+		Log.i(TAG,"Creating/Opening Database");
+		mDBAdapter.createDatabase();       
+		mDBAdapter.open();
+		Log.i(TAG,"Requesting info from getInfo function");
+		result=mDBAdapter.getInfoForMap(sql);
+		Log.i(TAG,"Information Retrived Passing it to SetView");
+		setView(result);
+		mDBAdapter.close();
+   }
+   
+   void showAZ()
+   {
+	 //Retrieving Values from database
+	    Log.i(TAG,"Populating AZ Stall list");
+	    ArrayList<BookMark> result = new ArrayList<BookMark>();
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName";
+		Log.i(TAG,"Creating Adapter for Fetching Data");
+		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+		Log.i(TAG,"Adapter Ready..");
+		Log.i(TAG,"Creating/Opening Database");
+		mDBAdapter.createDatabase();       
+		mDBAdapter.open();
+		Log.i(TAG,"Requesting info from getInfo function");
+		result=mDBAdapter.getInfoForMap(sql);
+		Log.i(TAG,"Information Retrived Passing it to SetView");
+		setView(result);
+		mDBAdapter.close();
+   }
+   
+   void showNearBy()
+   {
+	 //Retrieving Values from database
+	    Log.i(TAG,"Populating NearBy Stall list");
+	    ArrayList<BookMark> result = new ArrayList<BookMark>();
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName LIMIT 10";
+		Log.i(TAG,"Creating Adapter for Fetching Data");
+		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+		Log.i(TAG,"Adapter Ready..");
+		Log.i(TAG,"Creating/Opening Database");
+		mDBAdapter.createDatabase();       
+		mDBAdapter.open();
+		Log.i(TAG,"Requesting info from getInfo function");
+		result=mDBAdapter.getInfoForMap(sql);
+		Log.i(TAG,"Information Retrived Passing it to SetView");
+		setView(result);
+		mDBAdapter.close();
+   }
+    
+   void showDetail(String shopName)
+   {
+	   
+	   //Retrieving Values from database
+	    Log.i(TAG,"Populating Detail Stall list");
+	    ArrayList<BookMark> result = new ArrayList<BookMark>();
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  where S.shopName=\""+shopName+"\"";
+		Log.i(TAG,"Creating Adapter for Fetching Data");
+		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+		Log.i(TAG,"Adapter Ready..");
+		Log.i(TAG,"Creating/Opening Database");
+		mDBAdapter.createDatabase();       
+		mDBAdapter.open();
+		Log.i(TAG,"Requesting info from getInfo function");
+		result=mDBAdapter.getInfoForMap(sql);
+		Log.i(TAG,"Information Retrived Passing it to SetView");
+		setView(result);
+		mDBAdapter.close();
+	   
+		
+   }
+   
+   
+   
+   void showCategory(String category)
+   {
+	   
+	   //Retrieving Values from database
+	    Log.i(TAG,"Populating Category Stall list");
+	    ArrayList<BookMark> result = new ArrayList<BookMark>();
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.category=\""+category+"\"";
+		Log.i(TAG,"Creating Adapter for Fetching Data");
+		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+		Log.i(TAG,"Adapter Ready..");
+		Log.i(TAG,"Creating/Opening Database");
+		mDBAdapter.createDatabase();       
+		mDBAdapter.open();
+		Log.i(TAG,"Requesting info from getInfo function");
+		result=mDBAdapter.getInfoForMap(sql);
+		Log.i(TAG,"Information Retrived Passing it to SetView");
+		setView(result);
+		mDBAdapter.close();
+	   
+		
+   }
+   
+   void setView(ArrayList<BookMark> listOfBookMark)
+   {
+	   
+	   double lati = 18.539394,longi=73.863206; //Co-Ordinate of Pune
+	   LatLng position=new LatLng(lati,longi) ;
+	   
+	   mmap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+	   mmap.clear();
+	   mmap.setMyLocationEnabled(true);
+	   
+	   for(BookMark bookMark :listOfBookMark){
+		   
+		  // Log.i(TAG,bookMark.getTitle()+":"+bookMark.getSnippet());
+		   mmap.addMarker(new MarkerOptions()
+		   	   .position(bookMark.getPosition())
+			   .title(bookMark.getTitle())
+			   .snippet(bookMark.getSnippet()));
+
+			}
+	   
+	   // Move the camera instantly to position with a zoom of 15.
+	   //mmap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
+	   // Zoom in, animating the camera.
+	   //mmap.animateCamera(CameraUpdateFactory.zoomTo(11), 2000, null);
+	   
+	// Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
+	   CameraPosition cameraPosition = new CameraPosition.Builder()
+	       .target(position)      // Sets the center of the map to Mountain View
+	       .zoom(11)                   // Sets the zoom
+	       .tilt(45)                   // Sets the tilt of the camera to 30 degrees
+	       .build();                   // Creates a CameraPosition from the builder
+	   mmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+	   
+	 
+   }
+   
 }
+
+
+
