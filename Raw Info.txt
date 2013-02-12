@@ -1,0 +1,229 @@
+shopName,Address,Speciality
+
+from KP and Pritam and Anish Sharma
+
+Naad pan shop ,"  Nr Rajaram Brigde, Karvenagar, Nr Hotel Amachi",Pan
+Ganesh Bhel , Karvenagar,Bhel
+Durga ," cummins college, karvenagar.",Cold coffee
+Kalyan Bhel ," Manikbag, singhagar road.",Bhel
+Durga ," Manikbag, Sinhagad road,",Cold coffee
+Manakar dosa ," Manikbag, Sinhagad road,",Dosa
+Baskin robbin ," Manikbag, Sinhagad road,",
+Fantacy juice worls ( strawberry special ) ," Camp , Near ruby hall",Juice
+Khaman Dhokala , Karvenagar,Dhokala
+Kadhai , FC road,"Rabdi Jalebi, Kachori"
+Deccan kachhi dabeli (yashawant) ," Deccan , Nr Honkong Lane.",Kachhi Dabeli
+Goodluck hotel , deccan.,
+Harsh cold coffee ," kothrud, nr durga.",Cold coffee
+BABA cold coffee , Nr Bharati vidyapith.,Cold coffee
+Shaukin Pan shop , Nal stop.,Pan
+Khatri Ice cream ," 1. Rajaram bridge 2. National park, sinhagad road",Ice Cream
+Kattakir ," 1. cummins college karvenag. 2. Opp Garaware college, paud road.",Misal
+Bansi panipuri ," Dhanakawadi, Nr Bharati vidyapith.",PaniPuri
+Richirich cold driks ," 1. Bharati vidyapith, 2. MIT collage",Cold Drinks
+Durga , MIT,Cold coffee
+MOMOS ," 1. DC magarpatta, 1. Koregao park, lane 6.",Momos
+ramnath misal , tilak road.,Misal
+Durga , 1. narhe sinhagad 2. Vadgoa sinhagad,Cold coffee
+kailaash Bhel , Khed Shiwapur,Bhel
+Sweekar snaks ," Kothrud, nr P.Jog school.",Snacks
+Flavours  ,fc Road ,sandwitch
+Maggi Point ,Law College Road,
+Coffee Stop ,Deep Bunglow Chawk near  SB road,Cold coffee
+Aunty's Chai ,ITC Tower SB Road,Chai
+Momos ,KP Garden,Momos
+Rajma -Chawal ,"BVP Back Market , Katraj",Rajma Chawal
+Rabdi- Jalebi , Kadai,Jalebi
+Relax ,,Pavbhaji and Pulav 
+Juice world ,,Pavbhaji and Pulav 
+Jayashri,,Pavbhaji and Pulav 
+Swikar ,Kothrud,Poha 
+Cad -B ,Kothrud,Cad -B 
+Fantasy Juice,,Juice
+Vohuman Café,,Bun Omlet 
+Good Luck Cafe," Good luck chowk, FC road, Pune ",Bun Omlet 
+Juice World ,MG,Pavbhaji  
+Tilak,"Tilak road, Pune","Tea,Pattice"
+Supreme,JM Road,Pavbhaji and Pulav 
+Santosh Bakery,Apte Road ,Veg Puff and Bakery Items
+Jabreshwar Bhuvan,"Near Bharat Natya Mandir, Tilak Road, Pune ","Tea, Cream roll"
+IBM Dosa Centre,"near IBM, Yerwada ","Loni spunge dosa, spl. masal dosa"
+Reshma Pav bhurji centre,"BMCC /MMCC road, deccan, Pune ","Anda taka tak, Tiranga Pulav, Pav bhurji."
+Tasty tongues,"Baner Pashan Road, Chandani Chowk, Pune",Delhi style chaat.
+Old Waadeshwar Bhuvan,"Bajirao road, Pune ","Idli Chutney, Uthappa, thalipeeth "
+Tea stall Kharadi,Kharadi ,Tea
+tiffinee,"BVP Back market, Katraj ",Egg rice
+Siddhivinayak vada pav centre ,"BVP Back market, Katraj ","Vada pav, misal "
+Panipuri Big Bazaar ,Big Bazaar fatima nagar ,PaniPuri
+Manisha Bhel,"Near Tathavade Udyan, Karve Nagar, Pune ","Pune style Pani puri, cheese dabeli"
+Khatri Ice cream ,"near shivaji statue, kothrud","Ice cream made in wooden pot, Mastani with real fruits."
+
+
+
+from Avinash:
+
+Kapila kati kabab (DP road).  
+Just bake(DP road). 
+Madhyakailash- milk products (station). 
+Chaitanya paratha(FC road, paud road). 
+More snacks(vadgaon bk). 
+New poona bakery (loc:search on net). 
+
+
+
+from Amogh:
+
+1.  Ganesh snack center   : Dahi wada and south indian food          - >  Paud road near MIT
+2.  Khushaboo snacks        :  Pav bhaji and pulav ( after midnight)  - >  More vidyalay chauk , puad road pune
+3. Swikar snaks                     : early moring snacks ( after 4 am)          -> Karve road near Jog highschool.
+4. Prasanna snacks              :  mind blowing tea and cream roll         - > Paud road near Krishna hospital.
+5. Madhur sweets               :  Ras malai                                                       - > near Durga café, paud road.
+6. Shaukin pan shop            : AC Pan shop                                                 -> Karve road, Erandwane.
+7. Khatri Mastani                  : Mastani                                                          -> Sinhgad road
+8  Good luck café                  : Bun maska and Tea                                    -> GoodLuck chauk, Deccan
+9. Vishal Snacks center      :  Dahi Misal and Tea, Chole bhatore     ->  near MIT pune  
+10. Roll house                       :  Rolls                                                                 -> Mandar complex, sinhgad campus, wadgaon 
+
+
+
+from Deepak Gogawale
+
+Misal – Bedekar ,Kattakir ,
+Sandwich – Flavor (fc Road ) 
+Panipuri ,Bhel – Kalyan Bhel
+Pavbhaji and Pulav - Relax , Juice world ,Jayashri
+Pan shop – Shoukin (Nal Stop )
+
+
+from Amol Mane
+Kala misal : Rastha peth near KEM hospital
+Katikar misal
+Amrututalya : near Kumthekar road or perugate police station
+Tupe Chaha (Tea) : Gadital only  morning till 9 am
+Hindawi Swarajya (Sabudana Wada) : JM road opposite JM samadhi
+Burger King : Pulgate
+Basundhi Chaha : Kamla Nehru Park
+Aware (khanawal): Tilak Chowk i:e Alka theatre
+Pan at Bajirao Road
+Misal - Bedekar Tea Stall - Near Patrya Maruti Chowk, Narayan peth
+Cheese Omlette - Vohuman Cafe - Near Jahangir hospital
+Mysore Masala Cheese Dosa - Vaishali - FC road
+Paneer Amrutsari, Gobhi Cheese Paratha - Chaitanya
+Shawarma - Casalolo, Kamla Nehru Park
+Cheese Uttapa - Wadeshwar - FC Road
+Bhel - Ganesh bhel - Many outlets
+Indianised cheap chinese and rolls - Funtoons - Deep Bunglow Chowk
+Kolhapuri meal - Purepur Kolhapur - Near Mehendale Garage, Peru Gate Police Chowky
+Maharashtrian Thali - Durvankur - Tilak Road
+Tea - Tilak - Tilak Road
+Tea - Triveni - FC Road
+Samosa - Anarase Samosewale - Near DyanPrabodhini
+Pohe - Niranjan - FC Road
+Sabudana Khichadi - Appachi Khichadi - Deccan Gymkhana Gate
+Wataana Usal - Appachi Khichadi - Deccan Gymkhana Gate
+Bun omlette - Good Luck
+Kathi Kebab - Kapila - Dhole Patil Road
+Sandwiches - Marzorin - MG Road
+Pav Bhaji - Supreme Corner
+Daal wada - Saathe Wadewale - Deep Bunglow Chowk
+Wada Pav - Rohit Wadewaale
+Bun Maska - Good Luck
+Bun Omlette - Good Luck
+Steak with Chicken and Cheese Sizzler - Kobe, LCR / KP / Aundh
+Mastani - Sujata - Sadashiv Peth/Karve Putala
+Kothimbir Wadi - Mathura - JM Road
+Kothimbir Wadi - Potoba - Near Karishma / Dahanukar Colony
+SPDP - Vaishali - FC Road
+Sugarcane Juice - Shailesh Rsavanti Gruha - SP College
+Poha - aishwarya (in front of Cummins Diesel factory)
+Samosa's - joshi sweets, near shamrao kalmadi school
+Sandwitches - sweekar, near ideal colony
+Dosa - Mankar Dosa - Erandwane
+Chocolate Sandwich - In front of Greetwell, Good Luck Chowk
+Bun Maska : Good Luck and Vohuman Cafe
+
+
+from Mayur:
+
+
+Pan Shops:
+
+1)  Pappu Pan? Bibwewadi( Market Yard Road)
+2)	Poonam Pan?J M Road
+3)	Ganesh Pan?F C Road
+4)	Shoowkin Pan? Kothrud(Nal Stop)
+5)	Navkar Pan?Bajirao Road
+6)	Khaibar Pan?F C Road
+
+Tea Stalls:
+1)	Tilak-?Tilak road
+2)	Vadewale Joshi?Shastri Road
+3)	Narmadeshwar?Sadashiv Peth
+4)	Vaijnath Amruttulya?Kumthekar Road
+5)	Swami?Tilak Road
+6)	Vaijanath?Dange Chowk
+7)	Abu Nisal?Lakshmi Road
+8)	Tupe tea stall ? Gadital 
+9)	Chandeshwar ? peru gate police station Sadashiv peth 
+10)	Shiv Kailas dairy ? Pune Station 
+11)	Trupti Chaha ? dyaneshwar Paduka chowk 
+
+
+Misal:
+1)	Katakir?Kothrud
+2)	Bedekar?
+3)	Ramnath?Tilak Road
+4)	Rajusheth Misalwale?Vishrantwadi
+5)	Shri Misal?Sadashiv Peth
+6)	Wadki misal stop? starting of diveghat from Pune side
+
+Cold Cofffee:
+1)	Manasi?Satara Road
+2)	Durga?Kothrud
+3)	Sujata Mastani? Bibewadi / Off laxmi road 
+4)	Gujar mastani-? city pride Satara road 
+
+Wada Pav:
+1)	S kumar wada pav ? Sadhna vidyalay Hadapsar/ Magarpatta 
+2)	Dahi wada ? Adinath Society Satara road
+3)	Nagesh wada ? Sinhgad kondhwa 
+4)	Samartha Snax ? Chandan nagar 
+5)	Vadewale Joshi?Shastri Road
+
+Dosa/ South Indian
+
+1)	Mankar Dosa ? aadinath Society Satara road 
+2)	Sarvoday ? Chandan nagar
+3)	Rupali ? F C  road 
+4)	Vaishali ? F C  road
+5)	Dakshin Davangiri Dosa? F C Road/B T Kawade Road/Shastri Road
+
+Bhel N Chat
+
+1)	Kalyan Bhel-? Gera junction kondhwa / bibewadi 
+2)	Sudama Bhel ? Ishyan Mall / Chandan Nagar
+3)	Swad Bhel?B T Kawade Road 
+
+Misc
+
+1)	Roll dlight ? Bharti Vidyapith
+2)	Vikram Dairy? wagholi( lassi special )
+3)	Kailas dairy ?  opp Kaka Halwai Mandai pune
+4)	Cum sum ? Pune station 
+5)	Narayan Khaman Dokla? Balaji nagar satara road 
+6)	Navnath Kachi Dabeli? Hadapsar near Rajashree electronic 
+7)	Vrundavan Kulfi?Z Bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
