@@ -1,1 +1,65 @@
-hi
+// Directions
+
+int Radius=6371;
+
+                double lat1=18.4926417;
+
+                double lat2=18.5333;
+
+                double lon1=73.8498795;
+
+                double lon2=73.8514;
+
+                double dLat = Math.toRadians(lat2-lat1);
+
+            double dLon = Math.toRadians(lon2-lon1);
+
+            double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+
+            Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+
+            double c = 2 * Math.asin(Math.sqrt(a));
+
+            double valueResult= Radius*c;
+
+            double km=valueResult/1;
+
+            DecimalFormat newFormat = new DecimalFormat("####");
+
+            int kmInDec =  Integer.valueOf(newFormat.format(km));
+
+           double meter=valueResult%1000;
+
+           double meterInDec= Integer.valueOf(newFormat.format(meter));
+
+            Log.i("Radius Value",""+valueResult+"   KM  "+kmInDec+" Meter   "+meterInDec);
+
+
+// Directions 2 API Based:
+
+double distance1;
+
+                Location locationA = new Location("point A");
+
+                locationA.setLatitude(18.4926417);
+
+                locationA.setLongitude(73.8498795);
+
+                Location locationB = new Location("point B");
+
+                locationB.setLatitude(18.5333);
+
+                locationB.setLongitude(73.8514);
+
+                
+
+                distance1 = locationA.distanceTo(locationB);
+
+                distance1=distance1/1000;
+
+
+
+
+
