@@ -228,6 +228,8 @@ public class SimpleListAdapater extends BaseAdapter {
 
 
 
+Study Link;
 
+http://www.itsalif.info/content/custom-list-views-icons-and-listeners-android
 
 
