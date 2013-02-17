@@ -267,11 +267,12 @@ public class StreetFoodDataBaseAdapter {
                     	      	  
                    String shopName = mCur.getString(mCur.getColumnIndex("shopName"));
                    String shopInfo = mCur.getString(mCur.getColumnIndex("shopInfo"));
+                   String address  = mCur.getString(mCur.getColumnIndex("address"));
                    double latitude=  mCur.getFloat(mCur.getColumnIndex("latitude"));
                    double longitude= mCur.getFloat(mCur.getColumnIndex("longitude"));
                   
                   // Log.i(TAG,"BookMark: "+shopName+":"+shopInfo+":"+Double.toString(latitude)+":"+Double.toString(longitude));
-                   BookMark b1=new BookMark(shopName,shopInfo,latitude,longitude);
+                   BookMark b1=new BookMark(shopName,shopInfo,address,latitude,longitude);
                    result.add(b1);
                   
                    
