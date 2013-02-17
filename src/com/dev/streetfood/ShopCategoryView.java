@@ -116,8 +116,8 @@ public class ShopCategoryView extends Activity {
 	{
 		Log.i(TAG,"Setting View");
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>
-		(this,android.R.layout.simple_list_item_1, android.R.id.text1,info);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1,info);
 
 		Log.i(TAG,"Array Adapter Set");
 		Log.i(TAG,info.toString());
@@ -126,6 +126,9 @@ public class ShopCategoryView extends Activity {
 		ListShopInfo.setAdapter(adapter);
 		Log.i(TAG,"View Set Succesfully");
 
+		
+		
+		
 	}
 
 	public void goToListView()
@@ -162,7 +165,7 @@ public class ShopCategoryView extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_shop_category_view, menu);
+		getMenuInflater().inflate(R.menu.option_menu, menu);
 		return true;
 	}
    
