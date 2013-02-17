@@ -134,27 +134,34 @@ containing a value of this type.
         public static final int mediumspace=0x7f060001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
-        public static final int internet=0x7f020001;
-        public static final int layout_border=0x7f020002;
-        public static final int list_gradient_bg=0x7f020003;
-        public static final int list_gradient_bg_hover=0x7f020004;
-        public static final int list_selector=0x7f020005;
-        public static final int shape_button=0x7f020006;
-        public static final int shape_radiobutton=0x7f020007;
-        public static final int shape_radiobutton2=0x7f020008;
-        public static final int shape_radiobutton3=0x7f020009;
-        public static final int star=0x7f02000a;
-        public static final int textcolor_radiobutton=0x7f02000b;
-        public static final int textview_roundedge=0x7f02000c;
+        public static final int arrowright=0x7f020000;
+        public static final int direction=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int icn_launcher=0x7f020003;
+        public static final int internet=0x7f020004;
+        public static final int layout_border=0x7f020005;
+        public static final int list_gradient_bg=0x7f020006;
+        public static final int list_gradient_bg_hover=0x7f020007;
+        public static final int list_selector=0x7f020008;
+        public static final int shape_button=0x7f020009;
+        public static final int shape_radiobutton=0x7f02000a;
+        public static final int shape_radiobutton2=0x7f02000b;
+        public static final int shape_radiobutton3=0x7f02000c;
+        public static final int star=0x7f02000d;
+        public static final int textcolor_radiobutton=0x7f02000e;
+        public static final int textview_roundedge=0x7f02000f;
     }
     public static final class id {
         public static final int Address=0x7f04001b;
         public static final int RatingRow=0x7f04000c;
         public static final int VerticalLine=0x7f040008;
+        public static final int about=0x7f040029;
         public static final int btnRate=0x7f04001a;
+        public static final int btn_directions=0x7f04001d;
         public static final int firstColumn=0x7f04000e;
         public static final int fourthColumn=0x7f040017;
+        public static final int gettingStarted=0x7f04002b;
+        public static final int icn_arrow=0x7f040027;
         public static final int imageView1=0x7f040018;
         public static final int imgHygiene=0x7f04000f;
         public static final int imgQuality=0x7f040012;
@@ -163,7 +170,7 @@ containing a value of this type.
         public static final int listView1=0x7f040023;
         public static final int listViewCategory=0x7f040005;
         public static final int map=0x7f040025;
-        public static final int menu_settings=0x7f040026;
+        public static final int menu_settings=0x7f040028;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
         public static final int radioAZ=0x7f040020;
@@ -176,8 +183,8 @@ containing a value of this type.
         public static final int radio_group_list_selector=0x7f04001e;
         public static final int radio_group_map_selector=0x7f040024;
         public static final int satellite=0x7f040002;
-        public static final int saveSearchButton=0x7f04001d;
         public static final int secondColumn=0x7f040011;
+        public static final int sendfeedback=0x7f04002a;
         public static final int terrain=0x7f040003;
         public static final int thirdColumn=0x7f040014;
         public static final int txtAddress=0x7f04001c;
@@ -188,18 +195,21 @@ containing a value of this type.
         public static final int txtShopInfo=0x7f04000b;
         public static final int txtShopName=0x7f04000a;
         public static final int txtView_Category=0x7f040004;
+        public static final int txt_shopName=0x7f040026;
     }
     public static final class layout {
         public static final int activity_shop_category_view=0x7f030000;
         public static final int activity_shop_detail_view=0x7f030001;
         public static final int activity_shop_list_view=0x7f030002;
         public static final int activity_shop_map_view=0x7f030003;
+        public static final int list_item=0x7f030004;
     }
     public static final class menu {
         public static final int activity_shop_category_view=0x7f080000;
         public static final int activity_shop_detail_view=0x7f080001;
         public static final int activity_shop_list_view=0x7f080002;
         public static final int activity_shop_map_view=0x7f080003;
+        public static final int option_menu=0x7f080004;
     }
     public static final class string {
         public static final int AZ=0x7f05000f;
