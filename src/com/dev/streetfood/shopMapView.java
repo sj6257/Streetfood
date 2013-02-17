@@ -26,7 +26,6 @@ import android.annotation.TargetApi;
 public class ShopMapView extends FragmentActivity {
   
 	private static final String TAG = "ShopMapView";
-	private GoogleMap mmap;
 	  
 	 
 	   @TargetApi(11)
@@ -101,7 +100,7 @@ public class ShopMapView extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_shop_map_view, menu);
+        getMenuInflater().inflate(R.menu.option_menu, menu);
         return true;
     }
     
@@ -111,7 +110,7 @@ public class ShopMapView extends FragmentActivity {
 	 //Retrieving Values from database
 	    Log.i(TAG,"Populating Popular Stall list");
 	    ArrayList<BookMark> result = new ArrayList<BookMark>();
-		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -130,7 +129,7 @@ public class ShopMapView extends FragmentActivity {
 	 //Retrieving Values from database
 	    Log.i(TAG,"Populating AZ Stall list");
 	    ArrayList<BookMark> result = new ArrayList<BookMark>();
-		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName";
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -149,7 +148,7 @@ public class ShopMapView extends FragmentActivity {
 	 //Retrieving Values from database
 	    Log.i(TAG,"Populating NearBy Stall list");
 	    ArrayList<BookMark> result = new ArrayList<BookMark>();
-		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName LIMIT 10";
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName LIMIT 10";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -169,7 +168,7 @@ public class ShopMapView extends FragmentActivity {
 	   //Retrieving Values from database
 	    Log.i(TAG,"Populating Detail Stall list");
 	    ArrayList<BookMark> result = new ArrayList<BookMark>();
-		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  where S.shopName=\""+shopName+"\"";
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  where S.shopName=\""+shopName+"\"";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -193,7 +192,7 @@ public class ShopMapView extends FragmentActivity {
 	   //Retrieving Values from database
 	    Log.i(TAG,"Populating Category Stall list");
 	    ArrayList<BookMark> result = new ArrayList<BookMark>();
-		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.category=\""+category+"\"";
+		String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.category=\""+category+"\"";
 		Log.i(TAG,"Creating Adapter for Fetching Data");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		Log.i(TAG,"Adapter Ready..");
@@ -214,7 +213,7 @@ public class ShopMapView extends FragmentActivity {
 	   
 	   double lati = 18.539394,longi=73.863206; //Co-Ordinate of Pune
 	   LatLng position=new LatLng(lati,longi) ;
-	   
+	   GoogleMap mmap;
 	   mmap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 	   mmap.clear();
 	   mmap.setMyLocationEnabled(true);
