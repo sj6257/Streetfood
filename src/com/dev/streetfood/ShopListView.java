@@ -107,8 +107,8 @@ public class ShopListView extends Activity {
 	    lview.setOnItemClickListener(new OnItemClickListener() {
 		        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-		        TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-		        Log.i(TAG,"You Clicked:"+ text1.getText().toString());
+		       // TextView text1 = (TextView) view.findViewById(android.R.id.);
+		       // Log.i(TAG,"You Clicked:"+ text1.getText().toString());
              try{
             	 
             	 Intent intent;
@@ -127,11 +127,14 @@ public class ShopListView extends Activity {
             	 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             	 Log.i(TAG,"flagCategory : false");
 		         }
+		         
+		         ListViewCustomAdapter lAdapter=(ListViewCustomAdapter)parent.getAdapter();
+		         String clickedItem=(String) lAdapter.getItem(position);		         
 		         //Create a bundle object
 		         Bundle b = new Bundle();
 
 		             //Inserts a String value into the mapping of this Bundle
-		             b.putString("itemName", text1.getText().toString());
+		             b.putString("itemName",clickedItem);
 		            // b.putString("age", age.getText().toString()); we can put as many parameters we need
 
 		             //Add the bundle to the intent.
@@ -252,7 +255,10 @@ public class ShopListView extends Activity {
 
 	public void setView(ArrayList<String> info)
 	{
-		Log.i(TAG,"Setting View");
+		
+		/*
+		 * Log.i(TAG,"Setting View");
+		 
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>
 		(this,android.R.layout.simple_list_item_1, android.R.id.text1,info);
@@ -263,6 +269,13 @@ public class ShopListView extends Activity {
 		Log.i(TAG,"Attaching Arrya Adapter to List View");
 		lview.setAdapter(adapter);
 		Log.i(TAG,"View Set Succesfully");
+		
+		*/
+		 /* create and Adapter* */
+        ListViewCustomAdapter sAdapter = new ListViewCustomAdapter(lview.getContext(),R.layout.list_item,info);
+        
+        /* set the list's adapter */
+        lview.setAdapter(sAdapter);
 
 	}
 	
@@ -316,7 +329,6 @@ public class ShopListView extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.option_menu, menu);
 		return true;
-		
 	}
 	
 	
