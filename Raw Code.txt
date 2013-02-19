@@ -232,4 +232,72 @@ Study Link;
 
 http://www.itsalif.info/content/custom-list-views-icons-and-listeners-android
 
+-------------------------------------------------------------------
+Code for Option Menu:
+--------------------------------------------------------------------
+Activity.java :
 
+@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+      MenuInflater menuInflater = getMenuInflater();
+      menuInflater.inflate(R.layout.menu, menu);
+      return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+      switch (item.getItemId()) {
+        case R.id.getting_started:
+        	 Toast.makeText(UITESTActivity.this, "Getting Started is Selected", Toast.LENGTH_SHORT).show();
+          break;
+         case R.id.send_feedback:
+        	 Toast.makeText(UITESTActivity.this, "Send Feedback is Selected", Toast.LENGTH_SHORT).show(); 
+          break;
+        case R.id.about:
+        	 Toast.makeText(UITESTActivity.this, "About is Selected", Toast.LENGTH_SHORT).show();
+          break;
+        default:
+        	 	 return super.onOptionsItemSelected(item);
+      }
+      return true;
+    } 
+
+-------------------------------------------------
+Menu.xml :
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/getting_started"
+        android:title="Getting Started"
+        android:icon="@android:drawable/ic_menu_help"
+        android:orderInCategory="1"/>
+  <item android:id="@+id/send_feedback"
+        android:title="Send Feedback"
+        android:icon="@android:drawable/ic_menu_send"
+        android:orderInCategory="2"/>
+  <item android:id="@+id/about"
+        android:title="About Nomadic Food"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:orderInCategory="3"/>
+  </menu>
+
+----------------------------------------------------------
+Andorid Manifest.xml
+
+  android:theme="@android:style/Theme.NoTitleBar"
+
+------------------------------------------------------------
+Style.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NoActionBar" parent="@android:style/Theme.Holo.Light">
+  
+</style> 
+</resources>
+
+----------------------------------------------------------------
+---------------------------------------------------------
