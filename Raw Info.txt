@@ -9,7 +9,7 @@ Kalyan Bhel ," Manikbag, singhagar road.",Bhel
 Durga ," Manikbag, Sinhagad road,",Cold coffee
 Manakar dosa ," Manikbag, Sinhagad road,",Dosa
 Baskin robbin ," Manikbag, Sinhagad road,",
-Fantacy juice worls ( strawberry special ) ," Camp , Near ruby hall",Juice
+Fantacy juice world ( strawberry special ) ," Camp , Near ruby hall",Juice
 Khaman Dhokala , Karvenagar,Dhokala
 Kadhai , FC road,"Rabdi Jalebi, Kachori"
 Deccan kachhi dabeli (yashawant) ," Deccan , Nr Honkong Lane.",Kachhi Dabeli
@@ -68,6 +68,8 @@ Madhyakailash- milk products (station).
 Chaitanya paratha(FC road, paud road). 
 More snacks(vadgaon bk). 
 New poona bakery (loc:search on net). 
+Bedekar
+Purepure Kolhapur
 
 
 
@@ -214,6 +216,9 @@ Misc
 6)	Navnath Kachi Dabeli? Hadapsar near Rajashree electronic 
 7)	Vrundavan Kulfi?Z Bridge
 
+
+
+Bipin  ,opp Garware ,Kitchdi
 
 
 
