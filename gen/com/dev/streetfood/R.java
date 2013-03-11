@@ -136,11 +136,11 @@ containing a value of this type.
     public static final class drawable {
         public static final int arrowright=0x7f020000;
         public static final int direction=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icn_launcher=0x7f020003;
-        public static final int internet=0x7f020004;
-        public static final int layout_border=0x7f020005;
-        public static final int list_gradient_bg=0x7f020006;
+        public static final int directions=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icn_launcher=0x7f020004;
+        public static final int internet=0x7f020005;
+        public static final int layout_border=0x7f020006;
         public static final int list_gradient_bg_hover=0x7f020007;
         public static final int list_selector=0x7f020008;
         public static final int shape_button=0x7f020009;
@@ -152,64 +152,76 @@ containing a value of this type.
         public static final int textview_roundedge=0x7f02000f;
     }
     public static final class id {
-        public static final int Address=0x7f04001b;
-        public static final int RatingRow=0x7f04000c;
-        public static final int VerticalLine=0x7f040008;
-        public static final int about=0x7f040029;
-        public static final int btnRate=0x7f04001a;
-        public static final int btn_directions=0x7f04001d;
-        public static final int firstColumn=0x7f04000e;
-        public static final int fourthColumn=0x7f040017;
-        public static final int gettingStarted=0x7f04002b;
-        public static final int icn_arrow=0x7f040027;
-        public static final int imageView1=0x7f040018;
-        public static final int imgHygiene=0x7f04000f;
-        public static final int imgQuality=0x7f040012;
-        public static final int imgService=0x7f040015;
-        public static final int linearLayout1=0x7f04000d;
-        public static final int listView1=0x7f040023;
-        public static final int listViewCategory=0x7f040005;
-        public static final int map=0x7f040025;
-        public static final int menu_settings=0x7f040028;
+        public static final int Address=0x7f040023;
+        public static final int RatingRow=0x7f040014;
+        public static final int Sender=0x7f04000a;
+        public static final int VerticalLine=0x7f040010;
+        public static final int about=0x7f040032;
+        public static final int btnFeedback=0x7f04000b;
+        public static final int btnRate=0x7f040022;
+        public static final int btn_directions=0x7f040025;
+        public static final int content=0x7f040009;
+        public static final int firstColumn=0x7f040016;
+        public static final int fourthColumn=0x7f04001f;
+        public static final int getting_started=0x7f040030;
+        public static final int icn_arrow=0x7f04002f;
+        public static final int imageView1=0x7f040020;
+        public static final int imgHygiene=0x7f040017;
+        public static final int imgQuality=0x7f04001a;
+        public static final int imgService=0x7f04001d;
+        public static final int linearLayout1=0x7f040015;
+        public static final int listView1=0x7f04002b;
+        public static final int listViewCategory=0x7f04000d;
+        public static final int map=0x7f04002d;
+        public static final int menu_settings=0x7f040033;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int radioAZ=0x7f040020;
-        public static final int radioCategory=0x7f040021;
-        public static final int radioList=0x7f040007;
-        public static final int radioMap=0x7f040009;
-        public static final int radioNearBy=0x7f040022;
-        public static final int radioPopular=0x7f04001f;
-        public static final int radio_group_activity_selector=0x7f040006;
-        public static final int radio_group_list_selector=0x7f04001e;
-        public static final int radio_group_map_selector=0x7f040024;
+        public static final int radioAZ=0x7f040029;
+        public static final int radioCategory=0x7f04002a;
+        public static final int radioList=0x7f04000f;
+        public static final int radioMap=0x7f040011;
+        public static final int radioNearBy=0x7f040027;
+        public static final int radioPopular=0x7f040028;
+        public static final int radio_group_activity_selector=0x7f04000e;
+        public static final int radio_group_list_selector=0x7f040026;
+        public static final int radio_group_map_selector=0x7f04002c;
         public static final int satellite=0x7f040002;
-        public static final int secondColumn=0x7f040011;
-        public static final int sendfeedback=0x7f04002a;
+        public static final int secondColumn=0x7f040019;
+        public static final int send_feedback=0x7f040031;
         public static final int terrain=0x7f040003;
-        public static final int thirdColumn=0x7f040014;
-        public static final int txtAddress=0x7f04001c;
-        public static final int txtHygiene=0x7f040010;
-        public static final int txtOverall=0x7f040019;
-        public static final int txtQuality=0x7f040013;
-        public static final int txtService=0x7f040016;
-        public static final int txtShopInfo=0x7f04000b;
-        public static final int txtShopName=0x7f04000a;
-        public static final int txtView_Category=0x7f040004;
-        public static final int txt_shopName=0x7f040026;
+        public static final int textView1=0x7f040004;
+        public static final int textView2=0x7f040005;
+        public static final int textView3=0x7f040006;
+        public static final int textView4=0x7f040007;
+        public static final int textView5=0x7f040008;
+        public static final int thirdColumn=0x7f04001c;
+        public static final int txtAddress=0x7f040024;
+        public static final int txtHygiene=0x7f040018;
+        public static final int txtOverall=0x7f040021;
+        public static final int txtQuality=0x7f04001b;
+        public static final int txtService=0x7f04001e;
+        public static final int txtShopInfo=0x7f040013;
+        public static final int txtShopName=0x7f040012;
+        public static final int txtView_Category=0x7f04000c;
+        public static final int txt_shopName=0x7f04002e;
     }
     public static final class layout {
-        public static final int activity_shop_category_view=0x7f030000;
-        public static final int activity_shop_detail_view=0x7f030001;
-        public static final int activity_shop_list_view=0x7f030002;
-        public static final int activity_shop_map_view=0x7f030003;
-        public static final int list_item=0x7f030004;
+        public static final int activity_about=0x7f030000;
+        public static final int activity_send_feedback=0x7f030001;
+        public static final int activity_shop_category_view=0x7f030002;
+        public static final int activity_shop_detail_view=0x7f030003;
+        public static final int activity_shop_list_view=0x7f030004;
+        public static final int activity_shop_map_view=0x7f030005;
+        public static final int list_item=0x7f030006;
+        public static final int menu=0x7f030007;
     }
     public static final class menu {
-        public static final int activity_shop_category_view=0x7f080000;
-        public static final int activity_shop_detail_view=0x7f080001;
-        public static final int activity_shop_list_view=0x7f080002;
-        public static final int activity_shop_map_view=0x7f080003;
-        public static final int option_menu=0x7f080004;
+        public static final int activity_about=0x7f070000;
+        public static final int activity_send_feedback=0x7f070001;
+        public static final int activity_shop_category_view=0x7f070002;
+        public static final int activity_shop_detail_view=0x7f070003;
+        public static final int activity_shop_list_view=0x7f070004;
+        public static final int activity_shop_map_view=0x7f070005;
     }
     public static final class string {
         public static final int AZ=0x7f05000f;
@@ -264,37 +276,11 @@ containing a value of this type.
         public static final int common_google_play_services_update_title=0x7f050007;
         public static final int hello_world=0x7f05000c;
         public static final int menu_settings=0x7f05000d;
+        public static final int title_activity_about=0x7f050017;
+        public static final int title_activity_send_feedback=0x7f050018;
         public static final int title_activity_shop_category_view=0x7f050015;
         public static final int title_activity_shop_detail_view=0x7f050014;
         public static final int title_activity_shop_map_view=0x7f050016;
-    }
-    public static final class style {
-        /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
-         */
-        public static final int AppBaseTheme=0x7f070000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f070001;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.

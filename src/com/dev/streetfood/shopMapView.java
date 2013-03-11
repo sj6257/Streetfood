@@ -100,7 +100,7 @@ public class ShopMapView extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.option_menu, menu);
+    	getMenuInflater().inflate(R.layout.menu, menu);
         return true;
     }
     

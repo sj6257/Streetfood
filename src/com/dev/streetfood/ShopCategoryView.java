@@ -83,18 +83,18 @@ public class ShopCategoryView extends Activity {
 		ListShopInfo.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-	        TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-	        Log.i(TAG,"You Clicked:"+ text1.getText().toString());
+	       // TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+	       // Log.i(TAG,"You Clicked:"+ text1.getText().toString());
          try{
         	 Intent intent= new Intent(getApplicationContext(), ShopDetailView.class);
+        	 
+        	 ListViewCustomAdapter lAdapter=(ListViewCustomAdapter)parent.getAdapter();
+	         String clickedItem=(String) lAdapter.getItem(position);		         
 	         //Create a bundle object
 	         Bundle b = new Bundle();
 
 	             //Inserts a String value into the mapping of this Bundle
-	             b.putString("itemName", text1.getText().toString());
-	            // b.putString("age", age.getText().toString()); we can put as many parameters we need
-
-	             //Add the bundle to the intent.
+	             b.putString("itemName",clickedItem);
 	             intent.putExtras(b);
 
 	             //start the DisplayActivity
@@ -114,7 +114,7 @@ public class ShopCategoryView extends Activity {
 	
 	public void setView(ArrayList<String> info)
 	{
-		Log.i(TAG,"Setting View");
+		/*Log.i(TAG,"Setting View");
 
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, android.R.id.text1,info);
@@ -125,9 +125,12 @@ public class ShopCategoryView extends Activity {
 		Log.i(TAG,"Attaching Arrya Adapter to List View");
 		ListShopInfo.setAdapter(adapter);
 		Log.i(TAG,"View Set Succesfully");
-
+*/
 		
-		
+		 ListViewCustomAdapter sAdapter = new ListViewCustomAdapter(ListShopInfo.getContext(),R.layout.list_item,info);
+	        
+	        /* set the list's adapter */
+		 ListShopInfo.setAdapter(sAdapter);
 		
 	}
 
@@ -165,7 +168,7 @@ public class ShopCategoryView extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.option_menu, menu);
+		getMenuInflater().inflate(R.layout.menu, menu);
 		return true;
 	}
    

@@ -22,21 +22,21 @@
                 android:layout_weight="1"
                  
                 >
-                <RadioButton
-                    android:id="@+id/radioPopular"
+                 <RadioButton
+                    android:id="@+id/radioNearBy"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/Popular"
+                    android:text="@string/NearBy"
                     android:layout_weight="1"
                     android:button="@null"
                     android:background="@drawable/shape_radiobutton"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="4dp"
-                   android:textColor="@drawable/textcolor_radiobutton"
-                    
+                    android:textColor="@drawable/textcolor_radiobutton"
                     />
+               
                   <View
                     android:id="@+id/VerticalLine"
             		android:layout_width="1dip"
@@ -45,7 +45,33 @@
             		android:layout_marginTop="4dip"
             		android:background="#aaa"
           	 		/>
-                 <RadioButton
+                
+                   <RadioButton
+                    android:id="@+id/radioPopular"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/Popular"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:background="@drawable/shape_radiobutton2"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    
+                   android:textColor="@drawable/textcolor_radiobutton"
+                    
+                    />
+                 
+                  <View
+            		android:id="@+id/VerticalLine"
+            		android:layout_width="1dip"
+            		android:layout_height="wrap_content"
+            		android:layout_marginBottom="4dip"
+            		android:layout_marginTop="4dip"
+            		android:background="#aaa"
+          	 		/>
+                 
+                   <RadioButton
                     android:id="@+id/radioAZ"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -59,28 +85,8 @@
                     android:textColor="@drawable/textcolor_radiobutton"
                     
                     />
-                  <View
-            		android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-          	 		/>
-                   <RadioButton
-                    android:id="@+id/radioCategory"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/Category"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton2"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                   android:textColor="@drawable/textcolor_radiobutton"
-                    
-                    />
+                  
+                
                   <View
             		android:id="@+id/VerticalLine"
             		android:layout_width="1dip"
@@ -90,19 +96,20 @@
             		android:background="#aaa"
           	 		/>
                   
-                    <RadioButton
-                    android:id="@+id/radioNearBy"
+                     <RadioButton
+                    android:id="@+id/radioCategory"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/NearBy"
+                    android:text="@string/Category"
                     android:layout_weight="1"
                     android:button="@null"
                     android:background="@drawable/shape_radiobutton3"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"
+                   android:textColor="@drawable/textcolor_radiobutton"
+                    
                     />
              
             </RadioGroup>
@@ -120,7 +127,7 @@
     
      <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0.78"
         android:orientation="vertical"
         android:layout_marginLeft="4dip"
@@ -131,10 +138,14 @@
              android:id="@+id/listView1"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
+             android:layout_marginTop="4dip"
+             android:layout_marginLeft="4dip"
+             android:layout_marginRight="4dip"
              android:listSelector="@drawable/list_selector"
              android:textColor="@drawable/textcolor_radiobutton" 
              
              />
+         <!-- android:listSelector="@drawable/list_selector" -->
        	<View
   			android:layout_width="match_parent"
   			 android:layout_height="1dip"

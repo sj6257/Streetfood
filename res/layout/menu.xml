@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/getting_started"
+        android:title="Getting Started"
+        android:icon="@android:drawable/ic_menu_help"
+        android:orderInCategory="1"/>
+  <item android:id="@+id/send_feedback"
+        android:title="Send Feedback"
+        android:icon="@android:drawable/ic_menu_send"
+        android:orderInCategory="2"/>
+  <item android:id="@+id/about"
+        android:title="About Nomadic Food"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:orderInCategory="3"/>
+  </menu>
