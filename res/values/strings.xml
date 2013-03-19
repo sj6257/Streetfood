@@ -15,5 +15,11 @@
     <string name="title_activity_shop_map_view">ShopMapView</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_send_feedback">SendFeedback</string>
+    <string name="enable_gps">Enable GPS</string>
+    <string name="enable_gps_dialog">GPS provider not enabled. Would you like to enable it?</string>
+    <string name="latlng">Lat/Long:</string>
+    <string name="unknown">--Unknown--</string>
+    <string name="not_support_gps">Please enable GPS Access </string>
+    <string name="not_support_network">Please enable GPS Acess through mobile Network</string>
 
 </resources>
