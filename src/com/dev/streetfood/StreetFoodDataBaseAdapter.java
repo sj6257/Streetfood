@@ -6,10 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 //import android.content.ContentValues; //Need While inserting values
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.location.Location;
 import android.util.Log;
 
 
@@ -131,6 +133,84 @@ public class StreetFoodDataBaseAdapter {
     }
     
     
+    public ArrayList<String> updateDistance()
+    {
+    	
+    	ArrayList<String> result = new ArrayList<String>();
+    	String sql="select shopName shopName,latitude latitude,longitude longitude from streetShopInfo";
+    	Log.i(TAG,"Getting Information..");
+    	Cursor mCur=null;
+    	try 
+        { 
+             
+            Log.i(TAG,"Executing Query: "+sql);
+            mCur = mDb.rawQuery(sql, null); 
+            Log.i(TAG,"Query Executed Successfully");
+            if(mCur!=null)
+            {
+            if  (mCur.moveToFirst()) 
+            {
+                
+               do {
+            	   double latitude=  mCur.getFloat(mCur.getColumnIndex("latitude"));
+                   double longitude= mCur.getFloat(mCur.getColumnIndex("longitude"));
+            	   String shopName = mCur.getString(mCur.getColumnIndex("shopName"));
+            	   updateRow(shopName,latitude,longitude);
+                  
+            	   
+               }while (mCur.moveToNext());
+                     
+               mCur.close();
+                	}
+             else
+             {
+                	mCur.close();
+                	Log.e(TAG,"No Data Received from Query");
+             }
+           }
+            
+            				 
+        }
+        catch (Exception e)  
+        { 
+            Log.e(TAG, "getInfo >>"+ e.toString()); 
+           // throw mSQLException; 
+        } 
+		return result;
+    	
+    }
+    
+    
+  
+    
+// Function to update values
+   
+   public boolean updateRow(String ShopName,double lati ,double longi) 
+ 	{
+	    Location shopLocation =new Location("shopLocation");
+		shopLocation.setLatitude(lati);
+		shopLocation.setLongitude(longi);
+		double distance=0;   
+		distance=shopLocation.distanceTo(ShopListView.currentLocation);
+		distance=distance/1000;
+ 		try
+ 		{
+ 			ContentValues cv = new ContentValues();
+ 			cv.put("distance", distance);
+			String whereClause="shopName=\""+ShopName+"\"";
+			mDb.update("streetShopInfo", cv, whereClause, null);
+ 			Log.d("streetShopInfo", "distance saved");
+ 			return true;
+ 			
+ 		}
+ 		catch(Exception ex)
+ 		{
+ 			Log.d("streetShopInfo", ex.toString());
+ 			return false;
+ 		}
+ 	}
+  
+   
     
     public int getSingleIntVal(String sql)
     {
@@ -223,28 +303,7 @@ public class StreetFoodDataBaseAdapter {
     	
     }
     
-   /* Function to insert values
-    public boolean Insert Values(String name, String email) 
- 	{
- 		try
- 		{
- 			ContentValues cv = new ContentValues();
- 			cv.put("Name", name);
- 			cv.put("Email", email);
- 			
- 			mDb.insert("Employees", null, cv);
-
- 			Log.d("SaveEmployee", "information saved");
- 			return true;
- 			
- 		}
- 		catch(Exception ex)
- 		{
- 			Log.d("SaveEmployee", ex.toString());
- 			return false;
- 		}
- 	}
- 	*/
+  
     
     public ArrayList<BookMark> getInfoForMap(String sql)
     {
