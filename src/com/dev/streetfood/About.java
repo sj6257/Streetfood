@@ -18,9 +18,7 @@ public class About extends Activity {
 		setContentView(R.layout.activity_about);
 		TextView about=(TextView)findViewById(R.id.textView1);
 		//about.setText(R.string.abouthtml);
-		if(ViewConfiguration.get(this).hasPermanentMenuKey())
-		{
-		// to hide the action bar
+		
 		try
 		{
 		ActionBar actionBar = getActionBar();
@@ -32,7 +30,7 @@ public class About extends Activity {
 		  
 		}
 	   }
-	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,8 +1,10 @@
 package com.dev.streetfood;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,12 +14,23 @@ import android.widget.TextView;
 
 public class SendFeedback extends Activity {
 	
+	private static final String TAG = "Feedback";
 	String subject="Feedback",Body;
 	EditText etContent,etSender;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_send_feedback);
+		try
+		{
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		}
+		catch (Exception ex)
+		{
+		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+		  
+		}
 		
 		  etContent=(EditText)findViewById(R.id.content);
 		  etSender =(EditText)findViewById(R.id.Sender);
