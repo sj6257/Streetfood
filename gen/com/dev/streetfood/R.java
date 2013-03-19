@@ -216,12 +216,12 @@ containing a value of this type.
         public static final int menu=0x7f030007;
     }
     public static final class menu {
-        public static final int activity_about=0x7f070000;
-        public static final int activity_send_feedback=0x7f070001;
-        public static final int activity_shop_category_view=0x7f070002;
-        public static final int activity_shop_detail_view=0x7f070003;
-        public static final int activity_shop_list_view=0x7f070004;
-        public static final int activity_shop_map_view=0x7f070005;
+        public static final int activity_about=0x7f080000;
+        public static final int activity_send_feedback=0x7f080001;
+        public static final int activity_shop_category_view=0x7f080002;
+        public static final int activity_shop_detail_view=0x7f080003;
+        public static final int activity_shop_list_view=0x7f080004;
+        public static final int activity_shop_map_view=0x7f080005;
     }
     public static final class string {
         public static final int AZ=0x7f05000f;
@@ -274,13 +274,22 @@ containing a value of this type.
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
         public static final int common_google_play_services_update_title=0x7f050007;
+        public static final int enable_gps=0x7f050019;
+        public static final int enable_gps_dialog=0x7f05001a;
         public static final int hello_world=0x7f05000c;
+        public static final int latlng=0x7f05001b;
         public static final int menu_settings=0x7f05000d;
+        public static final int not_support_gps=0x7f05001d;
+        public static final int not_support_network=0x7f05001e;
         public static final int title_activity_about=0x7f050017;
         public static final int title_activity_send_feedback=0x7f050018;
         public static final int title_activity_shop_category_view=0x7f050015;
         public static final int title_activity_shop_detail_view=0x7f050014;
         public static final int title_activity_shop_map_view=0x7f050016;
+        public static final int unknown=0x7f05001c;
+    }
+    public static final class style {
+        public static final int MyTheme=0x7f070000;
     }
     public static final class styleable {
         /** Attributes that can be used with a MapAttrs.
