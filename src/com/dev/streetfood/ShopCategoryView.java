@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -28,17 +29,20 @@ public class ShopCategoryView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_category_view);
+		/*if(ViewConfiguration.get(this).hasPermanentMenuKey())
+		{
 		// to hide the action bar
-				try
-				{
-				ActionBar actionBar = getActionBar();
-				actionBar.hide();
-				}
-				catch (Exception ex)
-				{
-				  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
-				  
-				}
+		try
+		{
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		}
+		catch (Exception ex)
+		{
+		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+		  
+		}
+	   }*/
 		RadioGroup radioGroupActivitySelector = (RadioGroup) findViewById(R.id.radio_group_activity_selector);
 		radioGroupActivitySelector.setOnCheckedChangeListener(new OnCheckedChangeListener() 
 	    {

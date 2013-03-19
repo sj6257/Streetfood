@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.View.OnClickListener;
 
 import android.widget.Button;
@@ -32,17 +33,20 @@ public class ShopDetailView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_detail_view);
+		/*if(ViewConfiguration.get(this).hasPermanentMenuKey())
+		{
 		// to hide the action bar
-				try
-				{
-				ActionBar actionBar = getActionBar();
-				actionBar.hide();
-				}
-				catch (Exception ex)
-				{
-				  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
-				  
-				}
+		try
+		{
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		}
+		catch (Exception ex)
+		{
+		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+		  
+		}
+	   }*/
 				
 		Bundle b = getIntent().getExtras();
 		shopName=(String) b.get("itemName");
@@ -80,31 +84,7 @@ public class ShopDetailView extends Activity {
 			}
 		} );
 		
-		/*TextView txtShopName = (TextView) findViewById(R.id.txtShopName);	
-		txtShopName.setText(shopName);
 		
-
-		TextView txtShopInfo = (TextView) findViewById(R.id.txtShopInfo);	
-			
-		 TextView txtAddress = (TextView) findViewById(R.id.txtAddress);	*/
-			
-		// get relevant info from db
-		/*sql="select ifnull(shopInfo,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
-		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
-		mDBAdapter.createDatabase();       
-		mDBAdapter.open();
-		String info=mDBAdapter.getSingleStringVal(sql);
-		txtShopInfo.setText(info);
-		Log.i(TAG,info);
-		*/
-		
-	
-		/*sql="select ifnull(address1,\'Not Available\')  from streetShopInfo where shopName=\""+shopName+"\"";
-		String address=mDBAdapter.getSingleStringVal(sql);
-		txtAddress.setText("Address: \n"+address);
-		Log.i(TAG,"Got Address:"+address);
-		
-		mDBAdapter.close();*/
 		
 	}
 	
@@ -145,12 +125,28 @@ public class ShopDetailView extends Activity {
 	
 	protected void getDirections() {
 		// TODO Auto-generated method stub
+		Location myLocation=ShopListView.currentLocation;
+		
 		double dlongtd =result.get(0).getLongitude() ,dlattd=result.get(0).getLatitude();
-		Intent intent = new Intent(Intent.ACTION_VIEW, 
-			    Uri.parse("http://maps.google.com/maps?f=d&daddr="+dlattd+","+dlongtd));
-			intent.setComponent(new ComponentName("com.google.android.apps.maps", 
-			    "com.google.android.maps.MapsActivity"));
-		startActivity(intent);
+		
+		if(myLocation!=null){
+			// got location from the LocationTracker Class
+			Log.i(TAG,"got location from the LocationTracker Class");
+			Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
+		    Uri.parse("http://maps.google.com/maps?saddr="+myLocation.getLatitude()+","+myLocation.getLongitude()+"&daddr="+dlattd+","+dlongtd));
+			intent.setComponent(new ComponentName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity"));
+			startActivity(intent);
+			
+		}
+		else{
+			//since we don't have location from Location Tracker.Use last know location
+			Log.i(TAG,"since we don't have location from Location Tracker.Use last know location");
+			Intent intent = new Intent(Intent.ACTION_VIEW, 
+			Uri.parse("http://maps.google.com/maps?f=d&daddr="+dlattd+","+dlongtd));
+			intent.setComponent(new ComponentName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity"));
+		    startActivity(intent);
+		}
+		
 	}
 
 	public void goToListView()

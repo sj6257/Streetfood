@@ -1,11 +1,16 @@
 package com.dev.streetfood;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.ViewConfiguration;
 import android.widget.TextView;
 
 public class About extends Activity {
+
+	private static final String TAG = "About";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +18,20 @@ public class About extends Activity {
 		setContentView(R.layout.activity_about);
 		TextView about=(TextView)findViewById(R.id.textView1);
 		//about.setText(R.string.abouthtml);
+		if(ViewConfiguration.get(this).hasPermanentMenuKey())
+		{
+		// to hide the action bar
+		try
+		{
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		}
+		catch (Exception ex)
+		{
+		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+		  
+		}
+	   }
 	}
 
 	@Override
