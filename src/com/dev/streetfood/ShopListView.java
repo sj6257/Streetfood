@@ -50,7 +50,7 @@ public class ShopListView extends FragmentActivity {
 		
 		lview= (ListView) findViewById(R.id.listView1);
 		
-		/*if(!ViewConfiguration.get(this).hasPermanentMenuKey())
+		/*if(ViewConfiguration.get(this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
 		try
