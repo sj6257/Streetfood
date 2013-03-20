@@ -1,5 +1,14 @@
 //Code for List View:
 
+ final Activity activity = getActivity();
+        if (activity != null && ViewConfiguration.get(activity).hasPermanentMenuKey()) {
+            // Call settings should be available via its parent Activity.
+            callSettingsMenuItem.setVisible(false);
+        } else {
+            callSettingsMenuItem.setVisible(true);
+            callSettingsMenuItem.setIntent(DialtactsActivity.getCallSettingsIntent());
+        }
+
 / Check if the GPS setting is currently enabled on the device.
         // This verification should be done during onStart() because the system calls this method
         // when the user returns to the activity, which ensures the desired location provider is
