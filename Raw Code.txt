@@ -1,3 +1,89 @@
+//code for asynchronous task
+public class AsyncTaskDemoActivity extends Activity 
+{
+	
+	Button bttn;
+	ProgressBar progressBar;
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) 
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        bttn = (Button)findViewById(R.id.bttn);
+        bttn.setOnClickListener(new View.OnClickListener()
+        {
+
+			public void onClick(View arg0) 
+			{
+				try
+				{
+				  new MyTask().execute();
+				  //execute();
+				}
+				catch(Exception e)
+				{
+					Toast.makeText(AsyncTaskDemoActivity.this,"Error :"+e.toString(),Toast.LENGTH_LONG).show();
+				}
+			}
+		});
+       
+    }
+  
+    class MyTask extends AsyncTask<Void,String,Void>
+    {
+
+		@Override
+		protected void onPreExecute() 
+		{
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			//progressBar = new ProgressBar(AsyncTaskDemoActivity.this, null, android.R.attr.progressBarStyleSmall);
+			progressBar=(ProgressBar)findViewById(R.id.progressBar1);
+			progressBar.setVisibility(View.VISIBLE);
+			Toast.makeText(AsyncTaskDemoActivity.this,"Asynchronous task started..!!",Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) 
+		{
+			// TODO Auto-generated method stub
+			int i=0;
+			Random g = new Random();
+			while(i<=100)
+			{
+				int tym = g.nextInt(3001);
+				try 
+				{
+					Thread.sleep(tym);
+				} 
+				catch (InterruptedException e) 
+				{
+
+				}
+
+				int v = g.nextInt(11);
+				i=i+v;
+
+			}
+			return null;
+		}
+
+	
+		@Override
+		protected void onPostExecute(Void result) 
+		{
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			progressBar.setVisibility(View.GONE);
+			Toast.makeText(AsyncTaskDemoActivity.this,"Asynchronous task completed..!",Toast.LENGTH_LONG).show();
+		}
+    	
+    }
+}
+
+
+
 //Code for List View:
 
  final Activity activity = getActivity();
