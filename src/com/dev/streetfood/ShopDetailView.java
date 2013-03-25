@@ -13,6 +13,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.View.OnClickListener;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class ShopDetailView extends Activity {
@@ -33,7 +36,7 @@ public class ShopDetailView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_detail_view);
-		/*if(ViewConfiguration.get(this).hasPermanentMenuKey())
+		if(ViewConfiguration.get(ShopDetailView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
 		try
@@ -46,7 +49,10 @@ public class ShopDetailView extends Activity {
 		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
 		  
 		}
-	   }*/
+		Log.i(TAG,"Hardware Option Key Present");
+	   }
+		else
+			Log.i(TAG,"Hardware Option Key not Present");
 				
 		Bundle b = getIntent().getExtras();
 		shopName=(String) b.get("itemName");
@@ -173,13 +179,36 @@ public class ShopDetailView extends Activity {
 	
 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.layout.menu, menu);
-		return true;
-	}
-	
+	 @Override
+	   public boolean onCreateOptionsMenu(Menu menu) {
+	     MenuInflater menuInflater = getMenuInflater();
+	     menuInflater.inflate(R.layout.menu, menu);
+	     return super.onCreateOptionsMenu(menu);
+	   }
+
+	   @Override
+	   public boolean onOptionsItemSelected(MenuItem item) {
+	     Intent intent = new Intent(Intent.ACTION_VIEW);
+	     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+	     switch (item.getItemId()) {
+	       case R.id.getting_started:
+	       	 Toast.makeText(this, "Getting Started is Selected", Toast.LENGTH_SHORT).show();
+	         break;
+	        case R.id.send_feedback:
+	       	// Toast.makeText(this, "Send Feedback is Selected", Toast.LENGTH_SHORT).show();
+	        	 Intent intentFeedback = new Intent(this,SendFeedback.class);
+	      	   startActivity(intentFeedback);
+	         break;
+	       case R.id.about:
+	       	 //Toast.makeText(this, "About is Selected", Toast.LENGTH_SHORT).show();
+	    	   Intent intentAbout = new Intent(this,About.class);
+	    	   startActivity(intentAbout);
+	         break;
+	       default:
+	       	 	 return super.onOptionsItemSelected(item);
+	     }
+	     return true;
+	   } 
 	
 	@Override
 	protected void onStart() {

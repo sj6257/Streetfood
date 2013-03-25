@@ -38,19 +38,13 @@ public class ShopListView extends FragmentActivity {
 	public static Location currentLocation;
 	LocationTracker lTracker;
 	private static final String TAG = "ShopListView";
+	private String mIntent="showNearBy";
 	ListView lview;
 	boolean flagCategory=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_shop_list_view);
-		
-		
-       
-		
-		lview= (ListView) findViewById(R.id.listView1);
-		
-		/*if(ViewConfiguration.get(this).hasPermanentMenuKey())
+		if(ViewConfiguration.get(ShopListView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
 		try
@@ -67,7 +61,13 @@ public class ShopListView extends FragmentActivity {
 	   }
 		else
 			Log.i(TAG,"Hardware Option Key not Present");
-		*/
+		
+		setContentView(R.layout.activity_shop_list_view);
+		lview= (ListView) findViewById(R.id.listView1);
+		 
+		
+		
+		
 		RadioGroup radioGroupActivitySelector = (RadioGroup) findViewById(R.id.radio_group_activity_selector);
 		RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
 		ListRadioButton.setChecked(true);
@@ -96,19 +96,26 @@ public class ShopListView extends FragmentActivity {
 	        	switch (checkedId) {
 	  		  case R.id.radioPopular : 
 	  			  Log.i(TAG,"Popular Radio Button Selected");
+	  			  //Variable to sent an intent to map view so that it will show corresponding view
+	  			  mIntent="showPopular";
 	  			  showPopular();
 	  		                   	              break;
 	  		  case R.id.radioAZ :
 	  			  Log.i(TAG,"AZ Radio Button Selected");
+	  			//Variable to sent an intent to map view so that it will show corresponding view
+	  			 mIntent="showAZ";
 	  			  showAZ();
 	               break;
 	  		  case R.id.radioCategory: 
 	  			  Log.i(TAG,"Category Radio Button Selected");
-	  			 
+	  			//Variable to sent an intent to map view so that it will show corresponding view
+	  			 mIntent="showNearBy";
 	  			  showCategory();
 	               break;
 	  		  case R.id.radioNearBy :
 	  			  Log.i(TAG,"NearBy Radio Button Selected");
+	  			//Variable to sent an intent to map view so that it will show corresponding view
+	  			 mIntent="showNearBy";
 	  			showNearBy();
 	               break;
 	  		  default: showFeatured();
@@ -190,7 +197,7 @@ public class ShopListView extends FragmentActivity {
 		 Intent intent = new Intent(this,ShopMapView.class); // change it to Map Activity
 		 Bundle b = new Bundle();
          //Inserts a String value into the mapping of this Bundle
-         b.putString("itemName","List");
+         b.putString("itemName",mIntent);
          b.putString("view","List");
          intent.putExtras(b);
          startActivity(intent);

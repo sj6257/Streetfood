@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -93,8 +94,31 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
       Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
       showCategory(item);
       }
+      else if(fromView.equals("List")&&item.equals("showNearBy"))
+      {
+    	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+    	RadioButton radioNearByRadioButton=(RadioButton) findViewById(R.id.radioNearBy);
+    	radioNearByRadioButton.setChecked(true);
+    	 
+      }
+      else if(fromView.equals("List")&&item.equals("showPopular"))
+      {
+    	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+    	  RadioButton radioPopularRadioButton=(RadioButton) findViewById(R.id.radioPopular);
+    	  radioPopularRadioButton.setChecked(true);
+      	  
+    	  
+      }
+      else if(fromView.equals("List")&&item.equals("showAZ"))
+      {
+    	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
+    	  RadioButton radioAZRadioButton=(RadioButton) findViewById(R.id.radioAZ);
+    	  radioAZRadioButton.setChecked(true);
+    	  showAZ();
+      }
       else
       {
+    	  
       Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
       showNearBy();
       
@@ -153,13 +177,14 @@ mDBAdapter.close();
 //Retrieving Values from database
    Log.i(TAG,"Populating NearBy Stall list");
    ArrayList<BookMark> result = new ArrayList<BookMark>();
-String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName LIMIT 10";
+String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.distance<3  order by S.shopName LIMIT 10";
 Log.i(TAG,"Creating Adapter for Fetching Data");
 StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 Log.i(TAG,"Adapter Ready..");
 Log.i(TAG,"Creating/Opening Database");
 mDBAdapter.createDatabase();       
 mDBAdapter.open();
+mDBAdapter.updateDistance();
 Log.i(TAG,"Requesting info from getInfo function");
 result=mDBAdapter.getInfoForMap(sql);
 Log.i(TAG,"Information Retrived Passing it to SetView");
