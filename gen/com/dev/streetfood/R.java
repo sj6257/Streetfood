@@ -141,15 +141,16 @@ containing a value of this type.
         public static final int icn_launcher=0x7f020004;
         public static final int internet=0x7f020005;
         public static final int layout_border=0x7f020006;
-        public static final int list_gradient_bg_hover=0x7f020007;
-        public static final int list_selector=0x7f020008;
-        public static final int shape_button=0x7f020009;
-        public static final int shape_radiobutton=0x7f02000a;
-        public static final int shape_radiobutton2=0x7f02000b;
-        public static final int shape_radiobutton3=0x7f02000c;
-        public static final int star=0x7f02000d;
-        public static final int textcolor_radiobutton=0x7f02000e;
-        public static final int textview_roundedge=0x7f02000f;
+        public static final int list_gradient_bg=0x7f020007;
+        public static final int list_gradient_bg_hover=0x7f020008;
+        public static final int list_selector=0x7f020009;
+        public static final int shape_button=0x7f02000a;
+        public static final int shape_radiobutton=0x7f02000b;
+        public static final int shape_radiobutton2=0x7f02000c;
+        public static final int shape_radiobutton3=0x7f02000d;
+        public static final int star=0x7f02000e;
+        public static final int textcolor_radiobutton=0x7f02000f;
+        public static final int textview_roundedge=0x7f020010;
     }
     public static final class id {
         public static final int Address=0x7f040023;
@@ -163,6 +164,7 @@ containing a value of this type.
         public static final int content=0x7f040009;
         public static final int firstColumn=0x7f040016;
         public static final int fourthColumn=0x7f04001f;
+        public static final int gettingStarted=0x7f040035;
         public static final int getting_started=0x7f040030;
         public static final int icn_arrow=0x7f04002f;
         public static final int imageView1=0x7f040020;
@@ -188,6 +190,7 @@ containing a value of this type.
         public static final int satellite=0x7f040002;
         public static final int secondColumn=0x7f040019;
         public static final int send_feedback=0x7f040031;
+        public static final int sendfeedback=0x7f040034;
         public static final int terrain=0x7f040003;
         public static final int textView1=0x7f040004;
         public static final int textView2=0x7f040005;
@@ -222,6 +225,7 @@ containing a value of this type.
         public static final int activity_shop_detail_view=0x7f080003;
         public static final int activity_shop_list_view=0x7f080004;
         public static final int activity_shop_map_view=0x7f080005;
+        public static final int option_menu=0x7f080006;
     }
     public static final class string {
         public static final int AZ=0x7f05000f;
@@ -289,6 +293,32 @@ containing a value of this type.
         public static final int unknown=0x7f05001c;
     }
     public static final class style {
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
+         */
+        public static final int AppBaseTheme=0x7f070001;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f070002;
         public static final int MyTheme=0x7f070000;
     }
     public static final class styleable {
