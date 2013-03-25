@@ -14,10 +14,10 @@
         android:padding="4dp" >
 
         <RadioButton
-            android:id="@+id/radioPopular"
+             android:id="@+id/radioNearBy"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:text="@string/Popular"
+            android:text="@string/NearBy"
             android:gravity="center_horizontal|center_vertical"
             android:layout_weight="1"
             android:button="@null"
@@ -48,11 +48,13 @@
 
        
         <RadioButton
-            android:id="@+id/radioNearBy"
+            android:id="@+id/radioPopular"
+           
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/NearBy"
+            android:text="@string/Popular"
+            
             android:layout_weight="1"
             android:button="@null"
             android:background="@drawable/shape_radiobutton3"
