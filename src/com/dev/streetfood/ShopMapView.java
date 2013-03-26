@@ -5,10 +5,12 @@ import java.util.Map;
 
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.ViewConfiguration;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -40,17 +42,29 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
   Log.i(TAG,"In ShopMapView Class");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_map_view);
-     // to hide the action bar
-      try
-      {
-      ActionBar actionBar = getActionBar();
-      actionBar.hide();
-      }
-      catch (Exception ex)
-      {
-       Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
        
-      }
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+		//Action bar code for android devices with android version more than gingerbread
+		
+		if(ViewConfiguration.get(ShopMapView.this).hasPermanentMenuKey())
+		{
+		// to hide the action bar
+		try
+		{
+		ActionBar actionBar = getActionBar();
+		actionBar.hide();
+		}
+		catch (Exception ex)
+		{
+		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+		  
+		}
+		Log.i(TAG,"Hardware Option Key Present");
+	   }
+		else
+			Log.i(TAG,"Hardware Option Key not Present");
+		}
       
         //Intent intent=getIntent();
         //Bundle b = getIntent().getExtras();

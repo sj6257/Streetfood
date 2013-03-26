@@ -2,6 +2,7 @@ package com.dev.streetfood;
 
 import java.util.ArrayList;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -32,6 +33,10 @@ public class ShopCategoryView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_category_view);
+		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+		//Action bar code for android devices with android version more than gingerbread
+		
 		if(ViewConfiguration.get(ShopCategoryView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
@@ -49,6 +54,7 @@ public class ShopCategoryView extends Activity {
 	   }
 		else
 			Log.i(TAG,"Hardware Option Key not Present");
+		}
 				
 		RadioGroup radioGroupActivitySelector = (RadioGroup) findViewById(R.id.radio_group_activity_selector);
 		radioGroupActivitySelector.setOnCheckedChangeListener(new OnCheckedChangeListener() 

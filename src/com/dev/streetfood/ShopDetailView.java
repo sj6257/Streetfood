@@ -6,6 +6,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -36,6 +37,10 @@ public class ShopDetailView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_detail_view);
+		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+		//Action bar code for android devices with android version more than gingerbread
+		
 		if(ViewConfiguration.get(ShopDetailView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
@@ -53,6 +58,7 @@ public class ShopDetailView extends Activity {
 	   }
 		else
 			Log.i(TAG,"Hardware Option Key not Present");
+		}
 				
 		Bundle b = getIntent().getExtras();
 		shopName=(String) b.get("itemName");
