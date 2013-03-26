@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 
 
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -44,6 +47,10 @@ public class ShopListView extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+		//Action bar code for android devices with android version more than gingerbread
+		
 		if(ViewConfiguration.get(ShopListView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
@@ -61,6 +68,7 @@ public class ShopListView extends FragmentActivity {
 	   }
 		else
 			Log.i(TAG,"Hardware Option Key not Present");
+		}
 		
 		setContentView(R.layout.activity_shop_list_view);
 		lview= (ListView) findViewById(R.id.listView1);
@@ -98,25 +106,28 @@ public class ShopListView extends FragmentActivity {
 	  			  Log.i(TAG,"Popular Radio Button Selected");
 	  			  //Variable to sent an intent to map view so that it will show corresponding view
 	  			  mIntent="showPopular";
-	  			  showPopular();
+	  			  new GetList().execute("showPopular");
 	  		                   	              break;
 	  		  case R.id.radioAZ :
 	  			  Log.i(TAG,"AZ Radio Button Selected");
 	  			//Variable to sent an intent to map view so that it will show corresponding view
 	  			 mIntent="showAZ";
-	  			  showAZ();
+	  			  //showAZ();
+	  			new GetList().execute("showAZ");
 	               break;
 	  		  case R.id.radioCategory: 
 	  			  Log.i(TAG,"Category Radio Button Selected");
 	  			//Variable to sent an intent to map view so that it will show corresponding view
 	  			 mIntent="showNearBy";
-	  			  showCategory();
+	  			 // showCategory();
+	  			new GetList().execute("showCategory");
 	               break;
 	  		  case R.id.radioNearBy :
 	  			  Log.i(TAG,"NearBy Radio Button Selected");
 	  			//Variable to sent an intent to map view so that it will show corresponding view
 	  			 mIntent="showNearBy";
-	  			showNearBy();
+	  			//showNearBy();
+	  			new GetList().execute("showNearBy");
 	               break;
 	  		  default: showFeatured();
 	  		      Log.i(TAG,"No Radio Selected");
@@ -206,7 +217,9 @@ public class ShopListView extends FragmentActivity {
 
 	public void showFeatured()
 	{
-		flagCategory=false;
+		//commented till we get advertise code
+		
+		/*flagCategory=false;
 		Log.i(TAG,"Populating fetured Stall list");
 		ArrayList<String> list=new ArrayList<String>();
 		String sql="select  S.shopName from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
@@ -220,10 +233,10 @@ public class ShopListView extends FragmentActivity {
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Information Retrived Passing it to SetView");
 		setView(list);
-		mDBAdapter.close();
+		mDBAdapter.close();*/
 	}
 
-	public void showPopular(){
+	public ArrayList<String> showPopular(){
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
 		String sql="select  S.shopName shopName from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
@@ -236,11 +249,12 @@ public class ShopListView extends FragmentActivity {
 		Log.i(TAG,"Requesting info from getInfo function");
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Information Retrived Passing it to SetView");
-		setView(list);
+		//setView(list);
 		mDBAdapter.close();
+		return list;
 	}
 
-	public void showNearBy() {
+	public ArrayList<String> showNearBy() {
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
 		String sql="select shopName shopName from streetShopInfo where distance<3";
@@ -251,13 +265,14 @@ public class ShopListView extends FragmentActivity {
 		Log.i(TAG,"Requesting info from getInfo function");
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Cursor Values Retrived into Array list");
-		setView(list);
+		//setView(list);
 		mDBAdapter.close();
+		return list;
 
 	}
 
 
-	public void showAZ(){
+	public ArrayList<String> showAZ(){
 		ArrayList<String> list=new ArrayList<String>();
 		flagCategory=false;
 		String sql="select shopName from streetShopInfo order by shopName";
@@ -266,11 +281,12 @@ public class ShopListView extends FragmentActivity {
 		mDBAdapter.open();
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Cursor Values Retrived into Array list");
-		setView(list);
+		//setView(list);
 		mDBAdapter.close();
+		return list;
 	}
 
-	public void showCategory(){
+	public ArrayList<String> showCategory(){
 		ArrayList<String> list=new ArrayList<String>();
 		flagCategory=true;
 		String sql="select  distinct category from streetShopInfo order by category";
@@ -279,8 +295,9 @@ public class ShopListView extends FragmentActivity {
 		mDBAdapter.open();
 		list=mDBAdapter.getInfo(sql,"category");
 		Log.i(TAG,"Cursor Values Retrived into Array list");
-		setView(list);
+		//setView(list);
 		mDBAdapter.close();
+		return list;
 	}
 
 
@@ -351,13 +368,23 @@ public class ShopListView extends FragmentActivity {
  	    RadioButton ListRadioNearBy=(RadioButton) findViewById(R.id.radioNearBy);
 	  
 	    if(ListRadioPopular.isChecked())
-	    	showPopular();
-	    else if (ListRadioAZ.isChecked())
-	    	showAZ();
-	    else if (ListRadioCategory.isChecked())
-	        showCategory();
+	    {
+	    	 mIntent="showPopular";
+	    	new GetList().execute("showPopular");
+	    }
+	    else if (ListRadioAZ.isChecked()){
+	    	 mIntent="showAZ";
+	    	new GetList().execute("showAZ");
+	    }
+	    else if (ListRadioCategory.isChecked()){
+	    	 mIntent="showCategory";
+	    	new GetList().execute("showCategory");
+	    }
 	    else if (ListRadioNearBy.isChecked())
-	    	showNearBy();
+	    {
+	    	 mIntent="showNearBy";
+	    	new GetList().execute("showNearBy");
+	    }
 	    else showFeatured();
 	  		     
 	  				
@@ -448,7 +475,61 @@ private class EnableGpsDialogFragment extends DialogFragment {
            Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
            startActivity(settingsIntent);
        }
+       
+       
+       
+       
+       
+       
+       
+       /*
+        * Sub Class for Asynchronous Task
+        */
+       class GetList extends AsyncTask<String,Void,ArrayList<String> >
+       {
+
+   	   ProgressBar progressBar;
+   		@Override
+   		protected void onPreExecute() 
+   		{
+   			// TODO Auto-generated method stub
+   			super.onPreExecute();
+   		  //  progressBar = (ProgressBar)findViewById(R.id.progressBar1);
+   			//progressBar.setVisibility(View.VISIBLE);
+   			
+   		}
+
+   		
+   		protected ArrayList<String>  doInBackground(String... params) 
+   		{
+   			ArrayList<String> result = null;
+   			// TODO Auto-generated method stub
+   			if(params[0].equals("showNearBy"))
+   				result=showNearBy();
+   			else if(params[0].equals("showPopular"))
+   				result=showPopular();
+   			else if(params[0].equals("showAZ"))
+   				result=showAZ();
+   			else if(params[0].equals("showCategory")) 
+   				result=showCategory();
+   			return result;
+   		}
+
+   	
+   		@Override
+   		protected void onPostExecute(ArrayList<String> result) 
+   		{
+   			// TODO Auto-generated method stub
+   			super.onPostExecute(result);
+   			//progressBar.setVisibility(View.GONE);
+   			setView(result);
+   			
+   		}
+       	
+       }
    
-	
+
 }
+       
+     
 
