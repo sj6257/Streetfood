@@ -5,6 +5,7 @@ Nomadic food is application for foodies in Pune,Maharashtra,India.
 We have gathered information about most famous street food stalls around pune.
 
 Features:
+
 -List View : You can get information,address,user ratings.
 
 -Map View:  Location,Driving directions of your food stalls.
