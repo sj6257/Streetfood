@@ -1,3 +1,81 @@
+//Styles.XMl for 
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="android:Theme.Light">
+    <item name="android:windowActionBar">true</item>
+    <item name="android:windowNoTitle">false</item>
+    </style>
+</resources>
+
+
+// version 11
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="android:Theme.Holo.Light">
+    <item name="android:windowActionBar">true</item>
+    <item name="android:windowNoTitle">false</item>
+    </style>
+</resources>
+
+
+// version 14
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <item name="android:windowActionBar">true</item>
+    <item name="android:windowNoTitle">false</item>
+    </style>
+</resources>
+
+
+
+// for the shoplistview
+
+  <LinearLayout
+        android:id="@+id/linlaHeaderProgress"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_weight="0.78"
+        android:background="@drawable/layout_border"
+        >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar>
+    </LinearLayout>
+
+
+
+
+//
+
+LinearLayout linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress)
+LinearLayout lin = (LinearLayout) findViewById(R.id.lin);   
+
+//pre
+lin.setVisibility(View.GONE);
+linlaHeaderProgress.setVisibility(View.VISIBLE);
+
+//post
+
+linlaHeaderProgress.setVisibility(View.GONE);
+lin.setVisibility(View.VISIBLE);
+
+
+
+
+
 //code for asynchronous task
 public class AsyncTaskDemoActivity extends Activity 
 {
