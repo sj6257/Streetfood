@@ -1,6 +1,5 @@
 Streetfood
 ==========
-
 Nomadic food is application for foodies in Pune.
 
 We have gathered information about most famous street food stalls around pune.
