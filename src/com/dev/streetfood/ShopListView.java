@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -41,16 +42,19 @@ public class ShopListView extends FragmentActivity {
 	public static Location currentLocation;
 	LocationTracker lTracker;
 	private static final String TAG = "ShopListView";
-	private String mIntent="showNearBy";
+	private String mIntent="showPopular";
 	ListView lview;
 	boolean flagCategory=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
-		{
-		//Action bar code for android devices with android version more than gingerbread
+		setContentView(R.layout.activity_shop_list_view);
 		
+	if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+	{
+		//Action bar code for android devices with android version more than gingerbread
+		Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+		Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
 		if(ViewConfiguration.get(ShopListView.this).hasPermanentMenuKey())
 		{
 		// to hide the action bar
@@ -66,11 +70,18 @@ public class ShopListView extends FragmentActivity {
 		}
 		Log.i(TAG,"Hardware Option Key Present");
 	   }
-		else
-			Log.i(TAG,"Hardware Option Key not Present");
-		}
 		
-		setContentView(R.layout.activity_shop_list_view);
+		Log.i(TAG,"Hardware Option Key not Present");
+     }
+	else
+	 {
+		Log.i(TAG,"Android version is less than 3.0");
+		Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+		Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+		
+	 }
+		
+		
 		lview= (ListView) findViewById(R.id.listView1);
 		 
 		
@@ -118,7 +129,7 @@ public class ShopListView extends FragmentActivity {
 	  		  case R.id.radioCategory: 
 	  			  Log.i(TAG,"Category Radio Button Selected");
 	  			//Variable to sent an intent to map view so that it will show corresponding view
-	  			 mIntent="showNearBy";
+	  			 mIntent="showPopular";
 	  			 // showCategory();
 	  			new GetList().execute("showCategory");
 	               break;
@@ -255,20 +266,26 @@ public class ShopListView extends FragmentActivity {
 	}
 
 	public ArrayList<String> showNearBy() {
+		
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
+		list=null;
+		if(currentLocation!=null)
+		{
 		String sql="select shopName shopName from streetShopInfo where distance<3";
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		mDBAdapter.createDatabase();       
 		mDBAdapter.open();
-		mDBAdapter.updateDistance();
+		//mDBAdapter.updateDistance();
 		Log.i(TAG,"Requesting info from getInfo function");
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Cursor Values Retrived into Array list");
 		//setView(list);
 		mDBAdapter.close();
-		return list;
-
+		
+		}
+			
+		 return list;
 	}
 
 
@@ -335,31 +352,45 @@ public class ShopListView extends FragmentActivity {
 	    super.onStart();
 		
 		 // Check if the GPS setting is currently enabled on the device.
-	        // This verification should be done during onStart() because the system calls this method
-	        // when the user returns to the activity, which ensures the desired location provider is
-	        // enabled each time the activity resumes from the stopped state.
-	        LocationManager locationManager =
-	                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-	        final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+	     // This verification should be done during onStart() because the system calls this method
+	     // when the user returns to the activity, which ensures the desired location provider is
+	     // enabled each time the activity resumes from the stopped state.     
+	       
+	    LocationManager locationManager =
+                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-	        if (!gpsEnabled) {
-	            // Build an alert dialog here that requests that the user enable
-	            // the location services, then when the user clicks the "OK" button,
-	            // call enableLocationSettings()
-	            new EnableGpsDialogFragment().show(getSupportFragmentManager(), "enableGpsDialog");
-	        }
-	        
-	   
-	    lTracker=new LocationTracker(this);
+        if (!gpsEnabled) {
+            // Build an alert dialog here that requests that the user enable
+            // the location services, then when the user clicks the "OK" button,
+            // call enableLocationSettings()
+            new EnableGpsDialogFragment().show(getSupportFragmentManager(), "enableGpsDialog");
+        }
+        lTracker=new LocationTracker(ShopListView.this);
 		currentLocation=lTracker.getLocation();
 		Log.i(TAG,"Location Tracker Started");
-		if(currentLocation!=null)   
-		{Log.i(TAG,"Location Received");}   
+	    new Thread(new Runnable() {
+	            public void run() {
+	            	
+	            	
+	            	
+	        		if(currentLocation!=null)   
+	        		{Log.i(TAG,"Location Received");   
+	        		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(ShopListView.this);
+	        		mDBAdapter.createDatabase();       
+	        		mDBAdapter.open();
+	        		mDBAdapter.updateDistance();
+	        		mDBAdapter.close();
+	        		}
+	            }
+	          }).start();
+	    
+	    
 	    
 		   
 	  //default show Popular Shops
 	    Log.i(TAG,"I am in Main Activity Start");
-	    
+	 /*   
 	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
   		ListRadioButton.setChecked(true);
   	    RadioButton ListRadioPopular=(RadioButton) findViewById(R.id.radioPopular);
@@ -386,7 +417,7 @@ public class ShopListView extends FragmentActivity {
 	    	new GetList().execute("showNearBy");
 	    }
 	    else showFeatured();
-	  		     
+	  		  */   
 	  				
 	}
 	
@@ -488,15 +519,15 @@ private class EnableGpsDialogFragment extends DialogFragment {
        class GetList extends AsyncTask<String,Void,ArrayList<String> >
        {
 
-   	   ProgressBar progressBar;
+        LinearLayout linlaHeaderProgress = (LinearLayout) findViewById(R.id.linlaHeaderProgress);
+        LinearLayout linlaContainer = (LinearLayout) findViewById(R.id.ListViewContainer); 
    		@Override
    		protected void onPreExecute() 
    		{
    			// TODO Auto-generated method stub
    			super.onPreExecute();
-   		  //  progressBar = (ProgressBar)findViewById(R.id.progressBar1);
-   			//progressBar.setVisibility(View.VISIBLE);
-   			
+   			linlaContainer.setVisibility(View.GONE);
+   			linlaHeaderProgress.setVisibility(View.VISIBLE);
    		}
 
    		
@@ -521,8 +552,16 @@ private class EnableGpsDialogFragment extends DialogFragment {
    		{
    			// TODO Auto-generated method stub
    			super.onPostExecute(result);
-   			//progressBar.setVisibility(View.GONE);
+   		    if(result!=null)
+   		    {
+   			linlaHeaderProgress.setVisibility(View.GONE);
+   			linlaContainer.setVisibility(View.VISIBLE);
+   			
    			setView(result);
+   		    }
+   		    /*else
+   		    Toast.makeText(ShopListView.this,"Sorry Your Location not available..",Toast.LENGTH_LONG).show();
+   				*/
    			
    		}
        	
