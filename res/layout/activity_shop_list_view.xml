@@ -129,6 +129,38 @@
     </RelativeLayout>
     
      <LinearLayout
+        android:id="@+id/linlaHeaderProgress"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" 
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_weight="0.78"
+        android:background="@drawable/layout_border"
+        >
+
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/SmallSpace"
+            android:text="@string/Loading" />
+        
+    </LinearLayout>
+    
+    
+    
+    
+     <LinearLayout
+         android:id="@+id/ListViewContainer"
          android:layout_width="match_parent"
          android:layout_height="0dp"
          android:layout_marginLeft="4dip"
@@ -136,7 +168,6 @@
          android:layout_weight="0.78"
          android:background="@drawable/layout_border"
          android:orientation="vertical" >
-
         
          <ListView
              android:id="@+id/listView1"
