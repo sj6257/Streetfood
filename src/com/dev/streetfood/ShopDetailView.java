@@ -1,6 +1,7 @@
 package com.dev.streetfood;
 
 import java.util.ArrayList;
+import java.util.Currency;
 
 import android.location.Criteria;
 import android.location.Location;
@@ -37,28 +38,39 @@ public class ShopDetailView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shop_detail_view);
+		
 		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
 		{
-		//Action bar code for android devices with android version more than gingerbread
-		
-		if(ViewConfiguration.get(ShopDetailView.this).hasPermanentMenuKey())
-		{
-		// to hide the action bar
-		try
-		{
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
-		}
-		catch (Exception ex)
-		{
-		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
-		  
-		}
-		Log.i(TAG,"Hardware Option Key Present");
-	   }
-		else
+			//Action bar code for android devices with android version more than gingerbread
+			Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+			Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+			if(ViewConfiguration.get(ShopDetailView.this).hasPermanentMenuKey())
+			{
+			// to hide the action bar
+			try
+			{
+			ActionBar actionBar = getActionBar();
+			actionBar.hide();
+			}
+			catch (Exception ex)
+			{
+			  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+			  
+			}
+			Log.i(TAG,"Hardware Option Key Present");
+		   }
+			
 			Log.i(TAG,"Hardware Option Key not Present");
-		}
+	     }
+		else
+		 {
+			Log.i(TAG,"Android version is less than 3.0");
+			Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+			Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+			
+		 }
+			
+			
 				
 		Bundle b = getIntent().getExtras();
 		shopName=(String) b.get("itemName");
@@ -92,7 +104,10 @@ public class ShopDetailView extends Activity {
 			//@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				if(ShopListView.currentLocation!=null)
 				getDirections();
+				else
+				Toast.makeText(ShopDetailView.this,"Sorry Your latest is Location not available..",Toast.LENGTH_LONG).show();	
 			}
 		} );
 		
@@ -165,6 +180,7 @@ public class ShopDetailView extends Activity {
 	{
 		 Intent intent = new Intent(getApplicationContext(),ShopListView.class);
 		 //start the DisplayActivity
+		 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
          startActivity(intent);
 	}
 	
