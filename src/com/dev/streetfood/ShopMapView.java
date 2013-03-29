@@ -1,18 +1,19 @@
 package com.dev.streetfood;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import android.location.Location;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.ViewConfiguration;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,29 +43,37 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
   Log.i(TAG,"In ShopMapView Class");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_map_view);
-       
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
-		{
-		//Action bar code for android devices with android version more than gingerbread
-		
-		if(ViewConfiguration.get(ShopMapView.this).hasPermanentMenuKey())
-		{
-		// to hide the action bar
-		try
-		{
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
-		}
-		catch (Exception ex)
-		{
-		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
-		  
-		}
-		Log.i(TAG,"Hardware Option Key Present");
-	   }
-		else
-			Log.i(TAG,"Hardware Option Key not Present");
-		}
+    	{
+    		//Action bar code for android devices with android version more than gingerbread
+    		Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+    		Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+    		if(ViewConfiguration.get(ShopMapView.this).hasPermanentMenuKey())
+    		{
+    		// to hide the action bar
+    		try
+    		{
+    		ActionBar actionBar = getActionBar();
+    		actionBar.hide();
+    		}
+    		catch (Exception ex)
+    		{
+    		  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+    		  
+    		}
+    		Log.i(TAG,"Hardware Option Key Present");
+    	   }
+    		
+    		Log.i(TAG,"Hardware Option Key not Present");
+         }
+    	else
+    	 {
+    		Log.i(TAG,"Android version is less than 3.0");
+    		Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+    		Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+    		
+    	 }
+    		
       
         //Intent intent=getIntent();
         //Bundle b = getIntent().getExtras();
@@ -79,16 +88,18 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
             switch (checkedId) {
        case R.id.radioPopular : 
        Log.i(TAG,"Popular Radio Button Selected");
-       showPopular();
+       new GetMap().execute("showPopular");
        break;
        case R.id.radioAZ :
        Log.i(TAG,"AZ Radio Button Selected");
-       showAZ();
+       new GetMap().execute("showAZ");
                   break;
       
        case R.id.radioNearBy :
        Log.i(TAG,"NearBy Radio Button Selected");
-       showNearBy();
+       
+       //Toast.makeText(ShopMapView.this, "Gathering Near by Location...", Toast.LENGTH_LONG).show();
+       new GetMap().execute("showNearBy");
                   break;
        
       }
@@ -101,26 +112,27 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
       if(fromView.equals("Detail"))
       {
       Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
-      showDetail(item);
+      new GetMap().execute("Detail",item);
       }
       else if(fromView.equals("Category"))
       {
       Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
-      showCategory(item);
+      
+      new GetMap().execute("showCategory",item); 
       }
       else if(fromView.equals("List")&&item.equals("showNearBy"))
       {
     	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
     	RadioButton radioNearByRadioButton=(RadioButton) findViewById(R.id.radioNearBy);
     	radioNearByRadioButton.setChecked(true);
-    	 
+    	
       }
       else if(fromView.equals("List")&&item.equals("showPopular"))
       {
     	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
     	  RadioButton radioPopularRadioButton=(RadioButton) findViewById(R.id.radioPopular);
     	  radioPopularRadioButton.setChecked(true);
-      	  
+    	
     	  
       }
       else if(fromView.equals("List")&&item.equals("showAZ"))
@@ -128,13 +140,16 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
     	  Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
     	  RadioButton radioAZRadioButton=(RadioButton) findViewById(R.id.radioAZ);
     	  radioAZRadioButton.setChecked(true);
-    	  showAZ();
+    	 
       }
       else
       {
     	  
       Log.i(TAG,"In Map View.FromView "+fromView+"With Item "+item);
-      showNearBy();
+     // showNearBy();
+      RadioButton radioPopularRadioButton=(RadioButton) findViewById(R.id.radioPopular);
+	  radioPopularRadioButton.setChecked(true);
+	 
       
       }
         
@@ -148,96 +163,112 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
     }
     
     
-   void showPopular()
+   ArrayList<BookMark>  showPopular()
    {
 //Retrieving Values from database
    Log.i(TAG,"Populating Popular Stall list");
-   ArrayList<BookMark> result = new ArrayList<BookMark>();
-String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
-Log.i(TAG,"Creating Adapter for Fetching Data");
-StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
-Log.i(TAG,"Adapter Ready..");
-Log.i(TAG,"Creating/Opening Database");
-mDBAdapter.createDatabase();       
-mDBAdapter.open();
-Log.i(TAG,"Requesting info from getInfo function");
-result=mDBAdapter.getInfoForMap(sql);
-Log.i(TAG,"Information Retrived Passing it to SetView");
-setView(result);
-mDBAdapter.close();
+   ArrayList<BookMark> result = new  ArrayList<BookMark>();
+   result=null;
+   String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S JOIN ratings AS R  where S.shopName=R.shopName and R.overall >0 order by S.shopName";
+   Log.i(TAG,"Creating Adapter for Fetching Data");
+   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+   Log.i(TAG,"Adapter Ready..");
+   Log.i(TAG,"Creating/Opening Database");
+   mDBAdapter.createDatabase();       
+   mDBAdapter.open();
+   Log.i(TAG,"Requesting info from getInfo function");
+   result=mDBAdapter.getInfoForMap(sql);
+   Log.i(TAG,"Information Retrived Passing it to SetView");
+   mDBAdapter.close();
+   return result;
+   //setView(result);
    }
    
-   void showAZ()
+   ArrayList<BookMark> showAZ()
    {
-//Retrieving Values from database
+	   //Retrieving Values from database
    Log.i(TAG,"Populating AZ Stall list");
    ArrayList<BookMark> result = new ArrayList<BookMark>();
-String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName";
-Log.i(TAG,"Creating Adapter for Fetching Data");
-StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
-Log.i(TAG,"Adapter Ready..");
-Log.i(TAG,"Creating/Opening Database");
-mDBAdapter.createDatabase();       
-mDBAdapter.open();
-Log.i(TAG,"Requesting info from getInfo function");
-result=mDBAdapter.getInfoForMap(sql);
-Log.i(TAG,"Information Retrived Passing it to SetView");
-setView(result);
-mDBAdapter.close();
+   String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  order by S.shopName";
+   Log.i(TAG,"Creating Adapter for Fetching Data");
+   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+   Log.i(TAG,"Adapter Ready..");
+   Log.i(TAG,"Creating/Opening Database");
+   mDBAdapter.createDatabase();       
+   mDBAdapter.open();
+   Log.i(TAG,"Requesting info from getInfo function");
+   result=mDBAdapter.getInfoForMap(sql);
+   Log.i(TAG,"Information Retrived Passing it to SetView");
+   //setView(result);
+   mDBAdapter.close();
+   return result;
    }
    
-   void showNearBy()
+   ArrayList<BookMark> showNearBy()
    {
 //Retrieving Values from database
    Log.i(TAG,"Populating NearBy Stall list");
    ArrayList<BookMark> result = new ArrayList<BookMark>();
-String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.distance<3  order by S.shopName LIMIT 10";
-Log.i(TAG,"Creating Adapter for Fetching Data");
-StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
-Log.i(TAG,"Adapter Ready..");
-Log.i(TAG,"Creating/Opening Database");
-mDBAdapter.createDatabase();       
-mDBAdapter.open();
-mDBAdapter.updateDistance();
-Log.i(TAG,"Requesting info from getInfo function");
-result=mDBAdapter.getInfoForMap(sql);
-Log.i(TAG,"Information Retrived Passing it to SetView");
-setView(result);
-mDBAdapter.close();
+   String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.distance<3  order by S.shopName LIMIT 10";
+   Log.i(TAG,"Creating Adapter for Fetching Data");
+   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+   Log.i(TAG,"Adapter Ready..");
+   Log.i(TAG,"Creating/Opening Database");
+   mDBAdapter.createDatabase();       
+   mDBAdapter.open();
+ //  mDBAdapter.updateDistance();
+   Log.i(TAG,"Requesting info from getInfo function");
+   result=mDBAdapter.getInfoForMap(sql);
+   Log.i(TAG,"Information Retrived Passing it to SetView");
+   //	setView(result);
+   mDBAdapter.close();
+   return result;
    }
     
-   void showDetail(String shopName)
+  
+   
+   ArrayList<BookMark> showDetail(String shopName)
    {
   
   //Retrieving Values from database
    Log.i(TAG,"Populating Detail Stall list");
    ArrayList<BookMark> result = new ArrayList<BookMark>();
-String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  where S.shopName=\""+shopName+"\"";
-Log.i(TAG,"Creating Adapter for Fetching Data");
-StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
-Log.i(TAG,"Adapter Ready..");
-Log.i(TAG,"Creating/Opening Database");
-mDBAdapter.createDatabase();       
-mDBAdapter.open();
-Log.i(TAG,"Requesting info from getInfo function");
-result=mDBAdapter.getInfoForMap(sql);
-Log.i(TAG,"Information Retrived Passing it to SetView");
-setView(result);
-mDBAdapter.close();
-  
+   String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S  where S.shopName=\""+shopName+"\"";
+   Log.i(TAG,"Creating Adapter for Fetching Data");
+   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
+   Log.i(TAG,"Adapter Ready..");
+   Log.i(TAG,"Creating/Opening Database");
+   mDBAdapter.createDatabase();       
+   mDBAdapter.open();
+   Log.i(TAG,"Requesting info from getInfo function");
+   result=mDBAdapter.getInfoForMap(sql);
+   Log.i(TAG,"Information Retrived Passing it to SetView");
+   //setView(result);
+   mDBAdapter.close();
+   return result;
+   
    }
+   
+   
    
    @Override
    public void onInfoWindowClick(Marker marker) {
-  Log.i(TAG,"Directions clicked");
-  getDirection(marker.getPosition());
+	Log.i(TAG,"Directions clicked");
+  
+ // getDirection(marker.getPosition());
+  
+    if(ShopListView.currentLocation!=null)
+  	getDirection(marker.getPosition());
+	else
+    Toast.makeText(ShopMapView.this,"Sorry Your latest is Location not available..",Toast.LENGTH_LONG).show();	
+	
     
    }
    
    protected void getDirection(LatLng LatLAng) {
 // TODO Auto-generated method stub
 Location myLocation=ShopListView.currentLocation;
-//double dlongtd =result.get(0).getLongitude() ,dlattd=result.get(0).getLatitude();
+
 Log.i("Lat and LOg","Hi"+LatLAng);
 double dlongtd = LatLAng.longitude;
 double dlattd=LatLAng.latitude;
@@ -259,7 +290,7 @@ intent.setComponent(new ComponentName("com.google.android.apps.maps", "com.googl
 }
 }
 
-   void showCategory(String category)
+   ArrayList<BookMark> showCategory(String category)
    {
   
   //Retrieving Values from database
@@ -275,8 +306,9 @@ mDBAdapter.open();
 Log.i(TAG,"Requesting info from getInfo function");
 result=mDBAdapter.getInfoForMap(sql);
 Log.i(TAG,"Information Retrived Passing it to SetView");
-setView(result);
+//setView(result);
 mDBAdapter.close();
+return result;
   
    }
    
@@ -305,7 +337,7 @@ mDBAdapter.close();
   // Zoom in, animating the camera.
   //mmap.animateCamera(CameraUpdateFactory.zoomTo(11), 2000, null);
   
-// Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
+  // Construct a CameraPosition focusing on Mountain View and animate the camera to that position.
   CameraPosition cameraPosition = new CameraPosition.Builder()
       .target(position)      // Sets the center of the map to Mountain View
       .zoom(11)                   // Sets the zoom
@@ -316,4 +348,69 @@ mDBAdapter.close();
  
    }
    
+   /*
+    * Sub Class for Asynchronous Task
+    */
+   class GetMap extends AsyncTask<String,Void, ArrayList<BookMark> >
+   {
+
+	   ProgressBar progressBar;
+		@Override
+		protected void onPreExecute() 
+		{
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		
+			
+		}
+
+		
+		protected  ArrayList<BookMark>  doInBackground(String... params) 
+		{
+			 ArrayList<BookMark> result = null;
+			 
+			// TODO Auto-generated method stub
+			if(params[0].equals("showNearBy"))
+				result=showNearBy();
+			else if(params[0].equals("showPopular"))
+				result=showPopular();
+			else if(params[0].equals("showAZ"))
+				result=showAZ();
+			else if(params[0].equals("showCategory")) 
+				result=showCategory(params[1]);
+			else if(params[0].equals("Detail")) 
+				result=showDetail(params[1]);
+		    
+			return result;
+		}
+
+	
+		@Override
+		protected void onPostExecute( ArrayList<BookMark> result) 
+		{
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			//progressBar.setVisibility(View.GONE);
+			setView(result);
+			
+		}
+   	
+   }
+   
+   
+   @Override
+	protected void onStart() {
+	    super.onStart();
+	    LocationTracker lTracker = new LocationTracker(this);
+	    lTracker.stopTracking();
+	    
+   }
+
+
 }
+    
+   
+   
+   
+   
+
