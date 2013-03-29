@@ -154,30 +154,33 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Address=0x7f040023;
+        public static final int ListViewContainer=0x7f04002d;
         public static final int RatingRow=0x7f040014;
         public static final int Sender=0x7f04000a;
         public static final int VerticalLine=0x7f040010;
-        public static final int about=0x7f040032;
+        public static final int about=0x7f040035;
         public static final int btnFeedback=0x7f04000b;
         public static final int btnRate=0x7f040022;
         public static final int btn_directions=0x7f040025;
         public static final int content=0x7f040009;
         public static final int firstColumn=0x7f040016;
         public static final int fourthColumn=0x7f04001f;
-        public static final int gettingStarted=0x7f040035;
-        public static final int getting_started=0x7f040030;
-        public static final int icn_arrow=0x7f04002f;
+        public static final int gettingStarted=0x7f040038;
+        public static final int getting_started=0x7f040033;
+        public static final int icn_arrow=0x7f040032;
         public static final int imageView1=0x7f040020;
         public static final int imgHygiene=0x7f040017;
         public static final int imgQuality=0x7f04001a;
         public static final int imgService=0x7f04001d;
         public static final int linearLayout1=0x7f040015;
-        public static final int listView1=0x7f04002b;
+        public static final int linlaHeaderProgress=0x7f04002b;
+        public static final int listView1=0x7f04002e;
         public static final int listViewCategory=0x7f04000d;
-        public static final int map=0x7f04002d;
-        public static final int menu_settings=0x7f040033;
+        public static final int map=0x7f040030;
+        public static final int menu_settings=0x7f040036;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
+        public static final int pbHeaderProgress=0x7f04002c;
         public static final int radioAZ=0x7f040029;
         public static final int radioCategory=0x7f04002a;
         public static final int radioList=0x7f04000f;
@@ -186,11 +189,11 @@ containing a value of this type.
         public static final int radioPopular=0x7f040028;
         public static final int radio_group_activity_selector=0x7f04000e;
         public static final int radio_group_list_selector=0x7f040026;
-        public static final int radio_group_map_selector=0x7f04002c;
+        public static final int radio_group_map_selector=0x7f04002f;
         public static final int satellite=0x7f040002;
         public static final int secondColumn=0x7f040019;
-        public static final int send_feedback=0x7f040031;
-        public static final int sendfeedback=0x7f040034;
+        public static final int send_feedback=0x7f040034;
+        public static final int sendfeedback=0x7f040037;
         public static final int terrain=0x7f040003;
         public static final int textView1=0x7f040004;
         public static final int textView2=0x7f040005;
@@ -206,7 +209,7 @@ containing a value of this type.
         public static final int txtShopInfo=0x7f040013;
         public static final int txtShopName=0x7f040012;
         public static final int txtView_Category=0x7f04000c;
-        public static final int txt_shopName=0x7f04002e;
+        public static final int txt_shopName=0x7f040031;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -231,6 +234,7 @@ containing a value of this type.
         public static final int AZ=0x7f05000f;
         public static final int Category=0x7f050011;
         public static final int List=0x7f050012;
+        public static final int Loading=0x7f05001f;
         public static final int Map=0x7f050013;
         public static final int NearBy=0x7f050010;
         public static final int Popular=0x7f05000e;
@@ -293,32 +297,6 @@ containing a value of this type.
         public static final int unknown=0x7f05001c;
     }
     public static final class style {
-        /** 
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    
-
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
-
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    
- API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
-         */
-        public static final int AppBaseTheme=0x7f070001;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
-         */
-        public static final int AppTheme=0x7f070002;
         public static final int MyTheme=0x7f070000;
     }
     public static final class styleable {
