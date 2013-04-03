@@ -2,9 +2,6 @@ package com.dev.streetfood;
 
 
 import java.util.ArrayList;
-
-
-
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -37,11 +33,14 @@ import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 
+
+
 public class ShopListView extends FragmentActivity {
 
 	public static Location currentLocation;
-	LocationTracker lTracker;
+	private static LocationTracker lTracker;
 	private static final String TAG = "ShopListView";
+	private GetList mTask=null;
 	private String mIntent="showPopular";
 	ListView lview;
 	boolean flagCategory=false;
@@ -115,32 +114,94 @@ public class ShopListView extends FragmentActivity {
 	        	switch (checkedId) {
 	  		  case R.id.radioPopular : 
 	  			  Log.i(TAG,"Popular Radio Button Selected");
-	  			  //Variable to sent an intent to map view so that it will show corresponding view
+	  			 
+	  			  /*if(mTask!=null)
+	  			  {
+	  			  mTask.cancel(true);
+	  			  Log.i(TAG,"Canceling Current Task");
+	  			  }
+	  			  else
+	  			  {
+	  			  mTask=new GetList();	  
+	  			  mTask.execute("showPopular");
+	  			  }*/
+	  			 mTask=new GetList();	  
+	  			  mTask.execute("showPopular");
+	  			 //Variable to sent an intent to map view so that it will show corresponding view
 	  			  mIntent="showPopular";
-	  			  new GetList().execute("showPopular");
+	  			  
 	  		                   	              break;
 	  		  case R.id.radioAZ :
 	  			  Log.i(TAG,"AZ Radio Button Selected");
-	  			//Variable to sent an intent to map view so that it will show corresponding view
+	  			
+	  			 /*if(mTask!=null)
+	  			  {
+	  			  mTask.cancel(true);
+	  			  Log.i(TAG,"Canceling Current Task");
+	  			  }
+	  			  else
+	  			  {
+	  				 mTask=new GetList();	  
+	  			  mTask.execute("showAZ");
+	  			  }*/
+	  			 mTask=new GetList();	  
+	  			  mTask.execute("showAZ");
+	  			//Variable to sent an intent to map view so that it will show corresponding view 
 	  			 mIntent="showAZ";
-	  			  //showAZ();
-	  			new GetList().execute("showAZ");
+
 	               break;
 	  		  case R.id.radioCategory: 
 	  			  Log.i(TAG,"Category Radio Button Selected");
+	  			
+	  			/* if(mTask!=null)
+	  			  {
+	  			  mTask.cancel(true);
+	  			  Log.i(TAG,"Canceling Current Task");
+	  			  mTask=null;
+	  			  }
+	  			  else
+	  			  {
+	  			  mTask=new GetList();
+	  			  mTask.execute("showCategory");
+	  			  }*/
+	  			  mTask=new GetList();
+	  			  mTask.execute("showCategory");
 	  			//Variable to sent an intent to map view so that it will show corresponding view
-	  			 mIntent="showPopular";
-	  			 // showCategory();
-	  			new GetList().execute("showCategory");
+	  			  mIntent="showPopular";
+
 	               break;
+	  		    
 	  		  case R.id.radioNearBy :
 	  			  Log.i(TAG,"NearBy Radio Button Selected");
-	  			//Variable to sent an intent to map view so that it will show corresponding view
-	  			 mIntent="showNearBy";
-	  			//showNearBy();
-	  			new GetList().execute("showNearBy");
+	  			
+	  			  
+	  			 
+	  			/* if(mTask!=null)
+	  			  {
+	  			  mTask.cancel(true);
+	  			  Log.i(TAG,"Canceling Current Task");
+	  			  mTask=null;
+	  			  }
+	  			  else
+	  			  {
+	  			  mTask=new GetList();
+	  			  mTask.execute("showNearBy");
+	  			  }*/
+	  			  mTask=new GetList();
+	  			  mTask.execute("showNearBy");
+	  			  //Variable to sent an intent to map view so that it will show corresponding view 
+	  			  mIntent="showNearBy"; 
 	               break;
-	  		  default: showFeatured();
+	               
+	  		  default:
+	  			/* if(mTask!=null)
+	  			  {
+	  			  mTask.cancel(true);
+	  			  Log.i(TAG,"Canceling Current Task");
+	  			  mTask=null;
+	  			  }
+	  			  else*/
+	  			  showFeatured();
 	  		      Log.i(TAG,"No Radio Selected");
 	  		 
 	  		}
@@ -270,21 +331,32 @@ public class ShopListView extends FragmentActivity {
 		flagCategory=false;
 		ArrayList<String> list=new ArrayList<String>();
 		list=null;
-		if(currentLocation!=null)
-		{
+		
 		String sql="select shopName shopName from streetShopInfo where distance<3";
+		//currentLocation=lTracker.getLocation();
+		Log.i(TAG,"Location Tracker Started");
 		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
 		mDBAdapter.createDatabase();       
 		mDBAdapter.open();
-		//mDBAdapter.updateDistance();
-		Log.i(TAG,"Requesting info from getInfo function");
+		currentLocation=lTracker.getLocation();
+		if(mDBAdapter.validDistance() && currentLocation!=null && currentLocation.getLatitude()!=0)   
+		{
+		Log.i(TAG,"Now Fetching Near By Location from DB");
 		list=mDBAdapter.getInfo(sql,"shopName");
 		Log.i(TAG,"Cursor Values Retrived into Array list");
-		//setView(list);
 		mDBAdapter.close();
-		
 		}
-			
+		else
+		{
+		    if(currentLocation!=null && currentLocation.getLatitude()!=0 )   
+		       {
+		         	   Log.i(TAG,"Location Received");   
+		         	   mDBAdapter.updateDistance();
+		         	   list=mDBAdapter.getInfo(sql,"shopName");
+		         	   mDBAdapter.close();
+		         	  
+		       }
+		}
 		 return list;
 	}
 
@@ -355,7 +427,8 @@ public class ShopListView extends FragmentActivity {
 	     // This verification should be done during onStart() because the system calls this method
 	     // when the user returns to the activity, which ensures the desired location provider is
 	     // enabled each time the activity resumes from the stopped state.     
-	       
+	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
+  		ListRadioButton.setChecked(true);   
 	    LocationManager locationManager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         final boolean gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -366,58 +439,59 @@ public class ShopListView extends FragmentActivity {
             // call enableLocationSettings()
             new EnableGpsDialogFragment().show(getSupportFragmentManager(), "enableGpsDialog");
         }
+        
+    
         lTracker=new LocationTracker(ShopListView.this);
 		currentLocation=lTracker.getLocation();
 		Log.i(TAG,"Location Tracker Started");
-	    new Thread(new Runnable() {
-	            public void run() {
-	            	
-	            	
-	            	
-	        		if(currentLocation!=null)   
-	        		{Log.i(TAG,"Location Received");   
-	        		StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(ShopListView.this);
-	        		mDBAdapter.createDatabase();       
-	        		mDBAdapter.open();
-	        		mDBAdapter.updateDistance();
-	        		mDBAdapter.close();
-	        		}
-	            }
-	          }).start();
+		
+		/*
+		 * ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
+
+		// This schedule a runnable task every 2 minutes
+		scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
+		  public void run() {
+			  if(currentLocation!=null)
+			  {
+			  
+			  Log.i(TAG,"trying to update distance");
+			  StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(ShopListView.this);
+			  Log.i(TAG,"Creating DB");
+		 	  mDBAdapter.createDatabase();   
+		 	  Log.i(TAG,"Opening DB");
+		 	  mDBAdapter.open();
+		 	  Log.i(TAG,"Calling update function");
+		 	  mDBAdapter.updateDistance();
+		 	  Log.i(TAG,"Closing Database");
+		 	  mDBAdapter.close();
+		 	  Log.i("TAG","Distance Updated");
+			  }
+		  }
+		}, 0, 3, TimeUnit.SECONDS);*/
+		
+		
+		/*new Thread(new Runnable() {
+            public void run() {
+	     if(currentLocation!=null && currentLocation.getLatitude()!=0 )   
+	         	   {
+	         	   Log.i(TAG,"Location Received");   
+	         	   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(ShopListView.this);
+	         	  mDBAdapter.createDatabase();       
+	         	   mDBAdapter.open();
+	         	   if(!mDBAdapter.validDistance())
+	         	    mDBAdapter.updateDistance();
+	         	    mDBAdapter.close();
+	         	  }
+   	   
+            }
+          }).start();*/
 	    
 	    
 	    
 		   
 	  //default show Popular Shops
 	    Log.i(TAG,"I am in Main Activity Start");
-	 /*   
-	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
-  		ListRadioButton.setChecked(true);
-  	    RadioButton ListRadioPopular=(RadioButton) findViewById(R.id.radioPopular);
- 	    RadioButton ListRadioAZ=(RadioButton) findViewById(R.id.radioAZ);
- 	    RadioButton ListRadioCategory=(RadioButton) findViewById(R.id.radioCategory);
- 	    RadioButton ListRadioNearBy=(RadioButton) findViewById(R.id.radioNearBy);
-	  
-	    if(ListRadioPopular.isChecked())
-	    {
-	    	 mIntent="showPopular";
-	    	new GetList().execute("showPopular");
-	    }
-	    else if (ListRadioAZ.isChecked()){
-	    	 mIntent="showAZ";
-	    	new GetList().execute("showAZ");
-	    }
-	    else if (ListRadioCategory.isChecked()){
-	    	 mIntent="showCategory";
-	    	new GetList().execute("showCategory");
-	    }
-	    else if (ListRadioNearBy.isChecked())
-	    {
-	    	 mIntent="showNearBy";
-	    	new GetList().execute("showNearBy");
-	    }
-	    else showFeatured();
-	  		  */   
+	   
 	  				
 	}
 	
@@ -429,13 +503,7 @@ public class ShopListView extends FragmentActivity {
 	       
 	    }
 
-	@Override
-	public void onStop(){
-		super.onStop();
-		lTracker.stopTracking();
-		
-	}
-  
+	
    @Override
    public boolean onKeyDown(int keyCode, KeyEvent event)
    {
@@ -546,27 +614,50 @@ private class EnableGpsDialogFragment extends DialogFragment {
    			return result;
    		}
 
+   		/*@Override
+   	    protected void onCancelled() {
+   	        super.onCancelled();
+
+   	        linlaHeaderProgress.setVisibility(View.GONE);
+			linlaContainer.setVisibility(View.VISIBLE);
+
+   	        // ask if user wants to try again
+   	    }*/
    	
    		@Override
    		protected void onPostExecute(ArrayList<String> result) 
    		{
    			// TODO Auto-generated method stub
    			super.onPostExecute(result);
-   		    if(result!=null)
-   		    {
    			linlaHeaderProgress.setVisibility(View.GONE);
    			linlaContainer.setVisibility(View.VISIBLE);
    			
-   			setView(result);
-   		    }
-   		    /*else
+   		    if(result!=null)
+   		      setView(result);
+   		    else
    		    Toast.makeText(ShopListView.this,"Sorry Your Location not available..",Toast.LENGTH_LONG).show();
-   				*/
+   		
    			
    		}
        	
        }
-   
+       
+     @Override
+   	public void onStop(){
+   		super.onStop();
+   		lTracker.stopTracking();
+   		
+   	}
+       
+     @Override
+    public void onDestroy()
+     {
+        super.onDestroy();
+        lTracker.stopTracking();
+     }
+       
+     
+     
 
 }
        

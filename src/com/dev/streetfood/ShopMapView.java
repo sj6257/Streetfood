@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewConfiguration;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -36,7 +38,7 @@ public class ShopMapView extends FragmentActivity implements OnInfoWindowClickLi
   
 private static final String TAG = "ShopMapView";
 ArrayList<BookMark> result = new ArrayList<BookMark>();
- 
+private static LocationTracker lTracker; 
   @TargetApi(11)
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
        Log.i(TAG,"NearBy Radio Button Selected");
        
        //Toast.makeText(ShopMapView.this, "Gathering Near by Location...", Toast.LENGTH_LONG).show();
+       Toast.makeText(ShopMapView.this,"Searching near by Street Shops..",Toast.LENGTH_LONG).show();
        new GetMap().execute("showNearBy");
                   break;
        
@@ -156,11 +159,7 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
       //sql="select shopName  from streetShopInfo where category=\""+category+"\"";
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.layout.menu, menu);
-        return true;
-    }
+ 
     
     
    ArrayList<BookMark>  showPopular()
@@ -209,19 +208,34 @@ ArrayList<BookMark> result = new ArrayList<BookMark>();
 //Retrieving Values from database
    Log.i(TAG,"Populating NearBy Stall list");
    ArrayList<BookMark> result = new ArrayList<BookMark>();
+   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
    String sql="select  S.shopName shopName,IFNULL(S.shopInfo,\"Not Available\") shopInfo,ifnull(S.address1,\'Not Available\') address,S.latitude latitude,S.longitude longitude from streetShopInfo AS S where S.distance<3  order by S.shopName LIMIT 10";
    Log.i(TAG,"Creating Adapter for Fetching Data");
-   StreetFoodDataBaseAdapter mDBAdapter= new StreetFoodDataBaseAdapter(this);
    Log.i(TAG,"Adapter Ready..");
    Log.i(TAG,"Creating/Opening Database");
    mDBAdapter.createDatabase();       
    mDBAdapter.open();
- //  mDBAdapter.updateDistance();
-   Log.i(TAG,"Requesting info from getInfo function");
-   result=mDBAdapter.getInfoForMap(sql);
-   Log.i(TAG,"Information Retrived Passing it to SetView");
-   //	setView(result);
-   mDBAdapter.close();
+   ShopListView.currentLocation=lTracker.getLocation();
+	if(mDBAdapter.validDistance() && ShopListView.currentLocation!=null && ShopListView.currentLocation.getLatitude()!=0 )     
+	{
+     Log.i(TAG,"Now Fetching Near By Location from DB");
+     result=mDBAdapter.getInfoForMap(sql);
+     Log.i(TAG,"Information Retrived Passing it to SetView");
+     mDBAdapter.close();
+   } 
+	else
+	{
+	    if( ShopListView.currentLocation!=null &&  ShopListView.currentLocation.getLatitude()!=0 )   
+	       {
+	         	   Log.i(TAG,"Location Received");   
+	         	   mDBAdapter.updateDistance();
+	         	  result=mDBAdapter.getInfoForMap(sql);
+	         	   mDBAdapter.close();
+	         	  
+	       }
+	}
+   
+   	
    return result;
    }
     
@@ -399,13 +413,59 @@ return result;
    
    
    @Override
-	protected void onStart() {
-	    super.onStart();
-	    LocationTracker lTracker = new LocationTracker(this);
+   public void onStart()
+    {
+       super.onStart();
+       lTracker=new LocationTracker(ShopMapView.this);
+    }
+   
+   @Override
+	protected void onStop() {
+	    super.onStop();
 	    lTracker.stopTracking();
 	    
    }
 
+   @Override
+   public void onDestroy()
+    {
+       super.onDestroy();
+       lTracker.stopTracking();
+    }
+
+   
+   
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+     MenuInflater menuInflater = getMenuInflater();
+     menuInflater.inflate(R.layout.menu, menu);
+     return super.onCreateOptionsMenu(menu);
+   }
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+     Intent intent = new Intent(Intent.ACTION_VIEW);
+     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+     switch (item.getItemId()) {
+       case R.id.getting_started:
+       	 Toast.makeText(this, "Getting Started is Selected", Toast.LENGTH_SHORT).show();
+         break;
+        case R.id.send_feedback:
+       	// Toast.makeText(this, "Send Feedback is Selected", Toast.LENGTH_SHORT).show();
+        	 Intent intentFeedback = new Intent(this,SendFeedback.class);
+      	   startActivity(intentFeedback);
+         break;
+       case R.id.about:
+       	 //Toast.makeText(this, "About is Selected", Toast.LENGTH_SHORT).show();
+    	   Intent intentAbout = new Intent(this,About.class);
+    	   startActivity(intentAbout);
+         break;
+       default:
+       	 	 return super.onOptionsItemSelected(item);
+     }
+     return true;
+   } 
+   
 
 }
     
