@@ -31,6 +31,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class ShopDetailView extends Activity {
 
 	private static final String TAG = "ShowDetails";
+	private static LocationTracker lTracker;
 	String sql;
 	String shopName;
 	ArrayList<BookMark> result = new ArrayList<BookMark>();
@@ -152,7 +153,9 @@ public class ShopDetailView extends Activity {
 	
 	protected void getDirections() {
 		// TODO Auto-generated method stub
-		Location myLocation=ShopListView.currentLocation;
+		
+		
+		Location myLocation=lTracker.getLocation();
 		
 		double dlongtd =result.get(0).getLongitude() ,dlattd=result.get(0).getLatitude();
 		
@@ -231,12 +234,13 @@ public class ShopDetailView extends Activity {
 	     }
 	     return true;
 	   } 
+	   
 	
 	@Override
 	protected void onStart() {
 	    super.onStart();
 	  //default show Popular Shops
-	    
+	    lTracker=new LocationTracker(ShopDetailView.this);
 	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
   		ListRadioButton.setChecked(false);
   		 RadioButton MapRadioButton=(RadioButton) findViewById(R.id.radioMap);
@@ -245,4 +249,18 @@ public class ShopDetailView extends Activity {
   		
 	}
 
+   @Override
+	protected void onStop() {
+	    super.onStop();
+	    lTracker.stopTracking();
+	    
+   }
+
+	 @Override
+	    public void onDestroy()
+	     {
+	        super.onDestroy();
+	        lTracker.stopTracking();
+	     }
+	
 }

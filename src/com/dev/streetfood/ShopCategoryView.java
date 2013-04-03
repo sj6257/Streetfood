@@ -26,6 +26,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class ShopCategoryView extends Activity {
 
 	protected static final String TAG = "ShopCategoryView";
+	private static LocationTracker lTracker;
 	String sql;
 	ListView ListShopInfo;
 	String category;
@@ -187,7 +188,7 @@ public class ShopCategoryView extends Activity {
 	@Override
 	protected void onStart() {
 	    super.onStart();
-	 
+	    lTracker=new LocationTracker(ShopCategoryView.this);
 	    RadioButton ListRadioButton=(RadioButton) findViewById(R.id.radioList);
   		ListRadioButton.setChecked(false);
   		 RadioButton MapRadioButton=(RadioButton) findViewById(R.id.radioMap);
@@ -227,5 +228,20 @@ public class ShopCategoryView extends Activity {
 	     return true;
 	   } 
    
+	   
+	  @Override
+		protected void onStop() {
+		    super.onStop();
+		    lTracker.stopTracking();
+		    
+	   }
+	   
+	   @Override
+	    public void onDestroy()
+	     {
+	        super.onDestroy();
+	        lTracker.stopTracking();
+	     }
+
 	
 }
