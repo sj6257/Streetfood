@@ -20,7 +20,7 @@ public class StreetFoodDataBaseOpenHelper extends SQLiteOpenHelper
 	private static String DB_NAME ="Brain";       // Database name 
 	private SQLiteDatabase mDataBase;             // Database Variable
 	private final Context mContext;               // Context Variable
-	private final static int DB_VERSION=1;          // Database Version
+	private final static int DB_VERSION=3;          // Database Version
 	
 	// constructor for the StreetFoodDataBaseOpenHelper class
 	
@@ -117,7 +117,19 @@ public class StreetFoodDataBaseOpenHelper extends SQLiteOpenHelper
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		
+		Log.i(TAG,"Old version:"+oldVersion);
+		Log.i(TAG,"New version:"+newVersion);
+		if(newVersion>oldVersion)
+		{
+			try {
+				copyDataBase();
+				Log.i(TAG,"Database Upgraded");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				Log.i(TAG,"Exception while upgrading database");
+				Log.i(TAG,e.toString());
+			}
+		}
 	} 
 
 }
