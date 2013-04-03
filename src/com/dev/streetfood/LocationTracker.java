@@ -1,4 +1,6 @@
 package com.dev.streetfood;
+import java.util.Date;
+
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -30,6 +32,10 @@ public class LocationTracker extends FragmentActivity {
     gpsLocation = requestUpdatesFromProvider(LocationManager.GPS_PROVIDER, R.string.not_support_gps);
     networkLocation = requestUpdatesFromProvider(LocationManager.NETWORK_PROVIDER, R.string.not_support_network);
      
+    Date now= new Date();
+    
+    long gpsDelta=now.getTime()-gpsLocation.getTime();
+    //long networkDelta=now.getTime()-gpsLocation.getTime();
    //  gpsLocation = requestUpdatesFromProvider(LocationManager.GPS_PROVIDER,"Device do not support GPS");
    //  networkLocation = requestUpdatesFromProvider(LocationManager.NETWORK_PROVIDER,"Device do not support Network");
     
@@ -38,15 +44,21 @@ public class LocationTracker extends FragmentActivity {
      if (gpsLocation != null && networkLocation != null) {
     	 Log.i(TAG,"got both values");
          updateUILocation(getBetterLocation(gpsLocation, networkLocation));
+         
          } 
-	 else if (gpsLocation != null) {
+	 else if (gpsLocation != null && gpsDelta<TWO_MINUTES ) {
 		 Log.i(TAG,"got gps ");
          updateUILocation(gpsLocation);
            } 
-	else if (networkLocation != null) {
+	 else if(networkLocation != null) {
 		Log.i(TAG,"got Network");
               updateUILocation(networkLocation);
            }
+	 else
+	 {
+		 updateUILocation(gpsLocation);
+	 }
+	
      Log.i(TAG,"I out of constructor");
      
 	}
@@ -112,7 +124,7 @@ private final LocationListener listener = new LocationListener() {
       * @return The better Location object based on recency and accuracy.
       */
     protected Location getBetterLocation(Location newLocation, Location currentBestLocation) {
-    	Log.i(TAG,"getBetterLocation");
+    	Log.i(TAG,"Selecting BetterLocation");
         if (currentBestLocation == null) {
             // A new location is always better than no location
             return newLocation;
@@ -167,12 +179,13 @@ private final LocationListener listener = new LocationListener() {
 private void updateUILocation(Location location) {
         // We're sending the update to a handler which then updates the UI with the new
         // location.
-	Log.i(TAG,"Got Values from Provider");
+	
 	  currentLocation=location;
+	  ShopListView.currentLocation=currentLocation;
 	  
-
+	  }
         
-    }
+    
 public Location getLocation()
 {
 	Log.i(TAG,"Returning values to main thred");
