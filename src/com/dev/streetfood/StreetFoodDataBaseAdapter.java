@@ -1,10 +1,10 @@
 package com.dev.streetfood;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.Date;
+import java.util.Locale;
 //import android.content.ContentValues; //Need While inserting values
 import android.content.ContentValues;
 import android.content.Context;
@@ -138,7 +138,6 @@ public class StreetFoodDataBaseAdapter {
     	
     	ArrayList<String> result = new ArrayList<String>();
     	String sql="select shopName shopName,latitude latitude,longitude longitude from streetShopInfo";
-    	Log.i(TAG,"Getting Information..");
     	Cursor mCur=null;
     	try 
         { 
@@ -173,7 +172,7 @@ public class StreetFoodDataBaseAdapter {
         }
         catch (Exception e)  
         { 
-            Log.e(TAG, "getInfo >>"+ e.toString()); 
+            Log.e(TAG, "Exception While updating distance >>"+ e.toString()); 
            // throw mSQLException; 
         } 
 		return result;
@@ -190,13 +189,16 @@ public class StreetFoodDataBaseAdapter {
 	    Location shopLocation =new Location("shopLocation");
 		shopLocation.setLatitude(lati);
 		shopLocation.setLongitude(longi);
-		double distance=0;   
+		double distance=0; 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
+		Date currentTime=new Date();
 		distance=shopLocation.distanceTo(ShopListView.currentLocation);
 		distance=distance/1000;
  		try
  		{
  			ContentValues cv = new ContentValues();
  			cv.put("distance", distance);
+ 			cv.put("updated_on",dateFormat.format(currentTime));
 			String whereClause="shopName=\""+ShopName+"\"";
 			mDb.update("streetShopInfo", cv, whereClause, null);
  			Log.d("streetShopInfo", "distance saved");
@@ -356,5 +358,85 @@ public class StreetFoodDataBaseAdapter {
 		return result;
     	
     }
+    
+    public boolean validDistance()
+    {
+		
+    	Log.i(TAG,"Checking Distance..");
+    	String sql="select distance,updated_on from streetShopInfo  order by updated_on desc limit 1";
+    	//String sql="select distance from streetShopInfo limit 1";
+    	String updatedOn = null;
+    	 float distance = 0;
+    	 long seconds=0;
+    	Cursor mCur=null;
+    	try 
+        { 
+             
+            Log.i(TAG,"Executing Query: "+sql);
+            mCur = mDb.rawQuery(sql, null); 
+            Log.i(TAG,"Query Executed Successfully");
+            if(mCur!=null)
+            {
+            if  (mCur.moveToFirst()) 
+            {
+                
+               do {
+                   distance=mCur.getFloat(mCur.getColumnIndex("distance"));
+                   Log.i(TAG,"distance: "+distance);
+                   updatedOn=mCur.getString(mCur.getColumnIndex("updated_on"));
+                  Log.i(TAG,"updated_on: "+updatedOn);
+               }while (mCur.moveToNext());
+                     
+               mCur.close();
+                	}
+             else
+             {
+                	mCur.close();
+                	Log.e(TAG,"No Data Received from Query");
+             }
+           }
+            
+            				 
+        }
+        catch (Exception e)  
+        { 
+            Log.e(TAG, "getInfo >>"+ e.toString()); 
+           // throw mSQLException; 
+        } 
+    	
+    	
+    	try
+    	{
+    		Date CurrentTime=new Date();
+    		Log.i(TAG,"CurrentTime: "+CurrentTime);
+    		Date UpdateTime=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault()).parse(updatedOn);
+    		
+    		Log.i(TAG,"UpdateTime: "+UpdateTime);
+    	    seconds=(CurrentTime.getTime()-UpdateTime.getTime())/1000;
+    	    Log.i(TAG,"seconds: "+seconds);
+    	}
+    	catch (Exception e)  
+        { 
+            Log.e(TAG, "gotError while calculating date diff>>"+ e.toString()); 
+           // throw mSQLException; 
+        } 
+    	
+    	
+    	
+    	if(distance!=0 && seconds<10)
+    	//if(distance!=0)
+    	{
+    		Log.i(TAG,"Distance is Latest");
+    	return true;
+    	}
+    	else
+    	{
+    		Log.i(TAG,"Distance Outdated");
+    		
+    	return false;
+    	}
+    	
+    }
+    
     
 }
