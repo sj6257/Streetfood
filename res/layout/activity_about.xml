@@ -70,4 +70,34 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold|italic" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+         android:layout_marginBottom="4dip"
+        android:text="Special Thanks" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalline"
+        android:layout_centerHorizontal="true"
+        android:text="Amol, Aniket, Pritam, Pritesh, Mayur" />
+
+    <View
+        android:id="@+id/horizontalline"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_alignBottom="@+id/textView6"
+        
+        android:layout_marginLeft="50dip"
+       
+       
+        android:layout_marginRight="50dip"
+        android:background="#aaa" />
+ 
 </RelativeLayout>
