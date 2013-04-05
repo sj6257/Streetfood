@@ -1,3 +1,35 @@
+// location tracker
+if ( gpslocation !=null  && networkLocation!=null)
+{
+ if (gpslocation.getTime() > networkLocation.getTime()) {
+        Log.d(TAG, "Both are old, returning gps(newer)");
+		if(isLatest(gpslocation))
+        return gpslocation;
+    } else {
+        Log.d(TAG, "Both are old, returning network(newer)");
+        if(isLatest(networkLocation))
+        return networkLocation;
+    }
+
+}
+else if(gpslocation=null)
+{
+\\Processing for l2
+	if(isLatest(networkLocation))
+        return networkLocation;
+}
+else
+{
+ \\Processing for l1
+  if(isLatest(gpslocation))
+        return gpslocation;
+}
+
+
+
+
+
+
 //Styles.XMl for 
 
 <?xml version="1.0" encoding="utf-8"?>
