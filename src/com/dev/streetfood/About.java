@@ -19,7 +19,7 @@ public class About extends Activity {
 		setContentView(R.layout.activity_about);
 		TextView about=(TextView)findViewById(R.id.textView1);
 		//about.setText(R.string.abouthtml);
-		
+
 		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
 		{
 			//Action bar code for android devices with android version more than gingerbread
@@ -29,33 +29,27 @@ public class About extends Activity {
 			// to hide the action bar
 			try
 			{
-			ActionBar actionBar = getActionBar();
-			actionBar.hide();
+				ActionBar actionBar = getActionBar();
+				actionBar.hide();
 			}
 			catch (Exception ex)
 			{
-			  Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
-			  
+				Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+
 			}
 			Log.i(TAG,"Hardware Option Key Present");
 
-	     }
+		}
 		else
-		 {
+		{
 			Log.i(TAG,"Android version is less than 3.0");
 			Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
 			Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
-			
-		 }
-	}
-	
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_about, menu);
-		return true;
-		
+		}
 	}
+
+
+
 
 }

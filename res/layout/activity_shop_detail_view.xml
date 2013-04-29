@@ -3,16 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-        
-	<LinearLayout
- 	    android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="2dip"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
         android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip"
-        android:background="@drawable/layout_border" >
+        android:background="@drawable/layout_border"
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/txtShopName"
@@ -22,348 +22,256 @@
             android:gravity="center_vertical|center_horizontal|center"
             android:text="Shop Name  "
             android:textAppearance="?android:attr/textAppearanceLarge" />
-       
     </LinearLayout>
-    
-	<LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
-        >
-        <TextView
-            android:id="@+id/txtShopInfo"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
-            android:background="@drawable/layout_border"
-            android:paddingLeft="@dimen/mediumspace"
-            android:paddingRight="@dimen/mediumspace"
-            android:text="Inforamation Regarding Shop"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    
-        
+            android:layout_weight="1"
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/RatingRow"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="2dip"
-        android:layout_marginBottom="2dip" 
-         >
-       
-        
-        <LinearLayout
-		android:id="@+id/linearLayout1"
-		android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-         android:background="@drawable/layout_border">
+            <TextView
+                android:id="@+id/txtShopInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:background="@drawable/layout_border"
+                android:paddingLeft="@dimen/mediumspace"
+                android:paddingRight="@dimen/mediumspace"
+                android:scrollbars="vertical"
+                android:text="Inforamation Regarding Shop"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <LinearLayout
-                android:id="@+id/firstColumn"
+                android:id="@+id/RatingRow"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-                
-                <ImageView
-                    android:id="@+id/imgHygiene"
-                    android:layout_height="25dp"
-                    android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginBottom="2dip"
+                android:layout_marginTop="2dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical|center_horizontal|center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                   
-                    
-                    android:src="@drawable/star" />	
-			    
-        		<TextView
-            		android:id="@+id/txtHygiene"
-            		android:layout_width="wrap_content"
-            		android:layout_height="25dp"
-            		
-            		android:layout_marginLeft="2dp"
-        			android:layout_marginRight="2dp"
-        			
-        			android:layout_gravity="center"
-        			android:gravity="center_vertical|center_horizontal|center"
-        			android:layout_weight="1"
-            		android:text="Hygiene"/>  
-            		
-               
-        		
-             </LinearLayout>
-             
-        		<View
-					android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="match_parent"
-            		android:layout_marginBottom="2dip"
-            		android:layout_marginTop="2dip"
-            		android:background="#aaa"/>
-        		
-        		<LinearLayout
-                android:id="@+id/secondColumn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-                 <ImageView
-                    android:id="@+id/imgQuality"
-                    android:layout_height="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical|center_horizontal|center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                   
-                    
-                    android:src="@drawable/star" />	
-			    
-        		<TextView
-            		android:id="@+id/txtQuality"
-            		android:layout_width="wrap_content"
-            		android:layout_height="25dp"
-            		
-            		android:layout_marginLeft="2dp"
-        			android:layout_marginRight="2dp"
-        			
-        			android:layout_gravity="center"
-        			android:gravity="center_vertical|center_horizontal|center"
-        			android:layout_weight="1"
-            		android:text="Quality"/>  
-        		
-        		
-                    
-        	</LinearLayout>
-        		<View
-					android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="match_parent"
-            		android:layout_marginBottom="2dip"
-            		android:layout_marginTop="2dip"
-            		android:background="#aaa"/>
-			<LinearLayout
-                android:id="@+id/thirdColumn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >	
-        		
-			    <ImageView
-                    android:id="@+id/imgService"
-                    android:layout_height="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical|center_horizontal|center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                   
-                    
-                    android:src="@drawable/star" />	
-			    
-        		<TextView
-            		android:id="@+id/txtService"
-            		android:layout_width="wrap_content"
-            		android:layout_height="25dp"
-            		
-            		android:layout_marginLeft="2dp"
-        			android:layout_marginRight="2dp"
-        			
-        			android:layout_gravity="center"
-        			android:gravity="center_vertical|center_horizontal|center"
-        			android:layout_weight="1"
-            		android:text="Service"/>    
-        		
-        			
-        		
-        		</LinearLayout>
-        		
-			<View
-					android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="match_parent"
-            		android:layout_marginBottom="2dip"
-            		android:layout_marginTop="2dip"
-            		android:background="#aaa"/>
-			
-			<LinearLayout
-                android:id="@+id/fourthColumn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                
-                 >
-        		<ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_height="25dp"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical|center_horizontal|center"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                   
-                    
-                    android:src="@drawable/star" />	
-			    
-        		<TextView
-            		android:id="@+id/txtOverall"
-            		android:layout_width="wrap_content"
-            		android:layout_height="25dp"
-            		
-            		android:layout_marginLeft="2dp"
-        			android:layout_marginRight="2dp"
-        			
-        			android:layout_gravity="center"
-        			android:gravity="center_vertical|center_horizontal|center"
-        			android:layout_weight="1"
-            		android:text="Overall"/>    
-        	
-    
+                    android:background="@drawable/layout_border"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:id="@+id/firstColumn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imgHygiene"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:src="@drawable/ok" />
+
+                        <TextView
+                            android:id="@+id/txtHygiene"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:text="Hygiene" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/VerticalLine"
+                        android:layout_width="1dip"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dip"
+                        android:layout_marginTop="2dip"
+                        android:background="#aaa" />
+
+                    <LinearLayout
+                        android:id="@+id/secondColumn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imgQuality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:src="@drawable/poor" />
+
+                        <TextView
+                            android:id="@+id/txtQuality"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:text="Quality" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/VerticalLine"
+                        android:layout_width="1dip"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="2dip"
+                        android:layout_marginTop="2dip"
+                        android:background="#aaa" />
+
+                    <LinearLayout
+                        android:id="@+id/thirdColumn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imgService"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:src="@drawable/best" />
+
+                        <TextView
+                            android:id="@+id/txtService"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical|center_horizontal|center"
+                            android:text="Service" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
-			
-			
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/btnRate"
-                style="?android:attr/buttonStyleSmall"
+            <LinearLayout
+                android:id="@+id/Address"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/shape_button"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp"
-                android:text="Rate"
-                android:textColor="@drawable/textcolor_radiobutton" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/layout_border"
+                android:paddingLeft="@dimen/mediumspace" >
 
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Address" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dip"
+                    android:layout_marginTop="8dip"
+                    android:background="#aaa" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="@dimen/SmallSpace"
+                    android:paddingRight="@dimen/SmallSpace" >
+
+                    <Button
+                        android:id="@+id/btn_directions"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/directionclick" />
+                </FrameLayout>
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        </LinearLayout>
-        
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Address"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="@dimen/mediumspace"
-        android:background="@drawable/layout_border" >
+        android:layout_height="48dp" >
 
-        <TextView
-            android:id="@+id/txtAddress"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Address" />
-        
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:paddingRight="@dimen/mediumspace" >
-           
-    <Button
-        android:id="@+id/btn_directions"
-        android:layout_width="65dp"
-        android:layout_height="61dp"
-        android:background="@android:color/transparent" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/layout_border"
-        android:scaleType="fitXY"
-        android:src="@drawable/directions" />
-
-    </FrameLayout>
-
-    </LinearLayout>
-
-     </LinearLayout>
-     
-     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-       >
-        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-             <RadioGroup 
+            android:orientation="horizontal" >
+
+            <RadioGroup
                 android:id="@+id/radio_group_activity_selector"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:orientation="horizontal" >
+
                 <RadioButton
                     android:id="@+id/radioList"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton"
+                    android:button="@null"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/List"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"                
-                    />
-                  <View
-                	android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-            		
-          	 		/>
-                 <RadioButton
+                    android:textColor="@drawable/textcolor_radiobutton" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dip"
+                    android:layout_marginTop="4dip"
+                    android:background="#aaa" />
+
+                <RadioButton
                     android:id="@+id/radioMap"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton3"
+                    android:button="@null"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/Map"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton3"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"
-                    android:layout_marginRight="4dp"
-                   
-                    />
-                 </RadioGroup>
-            
-            </LinearLayout>
-            
-        </RelativeLayout>
-     
-     </LinearLayout>
+                    android:textColor="@drawable/textcolor_radiobutton" />
+            </RadioGroup>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

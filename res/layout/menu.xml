@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:id="@+id/getting_started"
-        android:title="Getting Started"
+    <item
+        android:id="@+id/getting_started"
         android:icon="@android:drawable/ic_menu_help"
-        android:orderInCategory="1"/>
-  <item android:id="@+id/send_feedback"
-        android:title="Send Feedback"
+        android:orderInCategory="1"
+        android:title="Getting Started"/>
+
+    <item
+        android:id="@+id/send_feedback"
         android:icon="@android:drawable/ic_menu_send"
-        android:orderInCategory="2"/>
-  <item android:id="@+id/about"
-        android:title="About Nomadic Food"
+        android:orderInCategory="2"
+        android:title="Send Feedback"/>
+
+    <item
+        android:id="@+id/about"
         android:icon="@android:drawable/ic_menu_info_details"
-        android:orderInCategory="3"/>
-  </menu>
+        android:orderInCategory="3"
+        android:title="About Nomadic Food"/>
+
+</menu>

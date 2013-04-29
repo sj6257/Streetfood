@@ -1,261 +1,245 @@
 <?xml version="1.0" encoding ="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    >
-    
+    android:orientation="vertical" >
+
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="a1516ad06bc3a5e"
+        ads:loadAdOnCreate="true" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp">
-       
-        <LinearLayout 
+        android:layout_height="48dp" >
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RadioGroup 
+            android:orientation="horizontal" >
+
+            <RadioGroup
                 android:id="@+id/radio_group_list_selector"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal"
                 android:layout_weight="1"
-                 
-                >
-                 <RadioButton
-                    android:id="@+id/radioNearBy"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/NearBy"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"
-                    />
-               
-                  <View
-                    android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-          	 		/>
-                
-                   <RadioButton
-                    android:id="@+id/radioPopular"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/Popular"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton2"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    
-                   android:textColor="@drawable/textcolor_radiobutton"
-                    
-                    />
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
 
-                  
-                 
-                  <View
-            		android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-          	 		/>
-                 
-                   <RadioButton
+                <RadioButton
                     android:id="@+id/radioAZ"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton"
+                    android:button="@null"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/AZ"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton2"
+                    android:textColor="@drawable/textcolor_radiobutton" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dip"
+                    android:layout_marginTop="4dip"
+                    android:background="#aaa" />
+
+                <RadioButton
+                    android:id="@+id/radioPopular"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"
-                    
-                    />
-                  
-                
-                  <View
-            		android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-          	 		/>
-                  
-                     <RadioButton
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton2"
+                    android:button="@null"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/Popular"
+                    android:textColor="@drawable/textcolor_radiobutton" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dip"
+                    android:layout_marginTop="4dip"
+                    android:background="#aaa" />
+
+                <RadioButton
                     android:id="@+id/radioCategory"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="@string/Category"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton3"
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton2"
+                    android:button="@null"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/Category"
+                    android:textColor="@drawable/textcolor_radiobutton" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dip"
+                    android:layout_marginTop="4dip"
+                    android:background="#aaa" />
+
+                <RadioButton
+                    android:id="@+id/radioNearBy"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginRight="4dp"
-                   android:textColor="@drawable/textcolor_radiobutton"
-                    
-                    />
-             
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton3"
+                    android:button="@null"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/NearBy"
+                    android:textColor="@drawable/textcolor_radiobutton" />
             </RadioGroup>
-            
         </LinearLayout>
-      
-         <!-- <View
+
+        <!--
+            <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:background="#aaa"
-            android:layout_alignParentBottom="true"/> -->
+            android:layout_alignParentBottom="true"/>
+        -->
     </RelativeLayout>
-    
-     <LinearLayout
+
+    <LinearLayout
         android:id="@+id/linlaHeaderProgress"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone" 
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
         android:layout_weight="0.78"
         android:background="@drawable/layout_border"
-        >
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
 
         <ProgressBar
             android:id="@+id/pbHeaderProgress"
-            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
         </ProgressBar>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/SmallSpace"
             android:text="@string/Loading" />
-        
     </LinearLayout>
-    
-    
-    
-    
-     <LinearLayout
-         android:id="@+id/ListViewContainer"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_marginLeft="4dip"
-         android:layout_marginRight="4dip"
-         android:layout_weight="0.78"
-         android:background="@drawable/layout_border"
-         android:orientation="vertical" >
-        
-         <ListView
-             android:id="@+id/listView1"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_marginLeft="4dip"
-             android:layout_marginRight="4dip"
-             android:layout_marginTop="4dip"
-             android:listSelector="@drawable/list_selector"
-             android:textColor="@drawable/textcolor_radiobutton" />
-         <!-- android:listSelector="@drawable/list_selector" -->
 
-         <View
-             android:layout_width="match_parent"
-             android:layout_height="1dip"
-             android:background="?android:attr/listDivider" />
-     </LinearLayout>
-     
-     <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ListViewContainer"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-       >
-           
-            <!-- For Horizontal Line-->
-        <!-- <View
+        android:layout_height="0dp"
+        android:layout_marginLeft="4dip"
+        android:layout_marginRight="4dip"
+        android:layout_weight="0.78"
+        android:background="@drawable/layout_border"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/listView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:layout_marginTop="4dip"
+            android:listSelector="@drawable/list_selector"
+            android:textColor="@drawable/textcolor_radiobutton" />
+        <!-- android:listSelector="@drawable/list_selector" -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+
+        <!-- For Horizontal Line -->
+        <!--
+             <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:layout_marginLeft="4dip"
             android:layout_marginRight="4dip"
             android:background="#aaa"
-            android:layout_alignParentTop="true"/> -->
-        
+            android:layout_alignParentTop="true"/>
+        -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            
-             <RadioGroup 
+            android:orientation="horizontal" >
+
+            <RadioGroup
                 android:id="@+id/radio_group_activity_selector"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal"
-                android:layout_weight="1">
+                android:orientation="horizontal" >
+
                 <RadioButton
                     android:id="@+id/radioList"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton"
+                    android:button="@null"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/List"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"                
-                    />
-                  <View
-            		android:id="@+id/VerticalLine"
-            		android:layout_width="1dip"
-            		android:layout_height="wrap_content"
-            		android:layout_marginBottom="4dip"
-            		android:layout_marginTop="4dip"
-            		android:background="#aaa"
-            		
-          	 		/>
-                 <RadioButton
+                    android:textColor="@drawable/textcolor_radiobutton" />
+
+                <View
+                    android:id="@+id/VerticalLine"
+                    android:layout_width="1dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dip"
+                    android:layout_marginTop="4dip"
+                    android:background="#aaa" />
+
+                <RadioButton
                     android:id="@+id/radioMap"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_radiobutton3"
+                    android:button="@null"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="@string/Map"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:background="@drawable/shape_radiobutton3"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@drawable/textcolor_radiobutton"
-                    android:layout_marginRight="4dp"
-                   
-                    />
-                 </RadioGroup>
-            
-            </LinearLayout>
-            
-        </RelativeLayout>
-    
-    
+                    android:textColor="@drawable/textcolor_radiobutton" />
+            </RadioGroup>
+        </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>

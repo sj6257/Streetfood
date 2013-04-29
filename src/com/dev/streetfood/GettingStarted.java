@@ -1,5 +1,52 @@
 package com.dev.streetfood;
 
-public class GettingStarted {
+import android.os.Build;
+import android.os.Bundle;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.util.Log;
+
+public class GettingStarted extends Activity {
+
+	private static final String TAG = "About";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_getting_started);
+
+
+
+		if(Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1)
+		{
+			//Action bar code for android devices with android version more than gingerbread
+			Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+			Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+
+			// to hide the action bar
+			try
+			{
+				ActionBar actionBar = getActionBar();
+				actionBar.hide();
+			}
+			catch (Exception ex)
+			{
+				Log.e(TAG,"Device Do Not Support Action Bar"+ex.toString());
+
+			}
+			Log.i(TAG,"Hardware Option Key Present");
+
+		}
+		else
+		{
+			Log.i(TAG,"Android version is less than 3.0");
+			Log.i(TAG,"Build.VERSION.SDK_INT : "+Build.VERSION.SDK_INT);
+			Log.i(TAG,"Build.VERSION_CODES.GINGERBREAD_MR1: "+Build.VERSION_CODES.GINGERBREAD_MR1);
+
+		}
+	}
+
+
+
 
 }

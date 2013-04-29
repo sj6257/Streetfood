@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:background="#282828"
+        android:gravity="center_vertical|center_horizontal|center"
+        android:text="Getting Started"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFF" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:scrollbars="vertical"
+                android:text="Main Screen:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="There are two sets of controls"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="1.Top Four Options"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioGroup
+                        android:id="@+id/radio_group_list_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/radioAZ"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/AZ"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+
+                        <View
+                            android:id="@+id/VerticalLine"
+                            android:layout_width="1dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dip"
+                            android:layout_marginTop="4dip"
+                            android:background="#aaa" />
+
+                        <RadioButton
+                            android:id="@+id/radioPopular"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton2"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/Popular"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+
+                        <View
+                            android:id="@+id/VerticalLine"
+                            android:layout_width="1dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dip"
+                            android:layout_marginTop="4dip"
+                            android:background="#aaa" />
+
+                        <RadioButton
+                            android:id="@+id/radioCategory"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton2"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/Category"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+
+                        <View
+                            android:id="@+id/VerticalLine"
+                            android:layout_width="1dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dip"
+                            android:layout_marginTop="4dip"
+                            android:background="#aaa" />
+
+                        <RadioButton
+                            android:id="@+id/radioNearBy"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton3"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/NearBy"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+                    </RadioGroup>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:scrollbars="vertical"
+                android:text="Near By: Lists street shops within 5km range from your location."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="Popular: Lists most popular street shops."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="AZ: Lists all street shops in alphabatical order"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="Category: Lists street shops according to type of food they serve"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="2.Bottom Two Options"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp" >
+
+                <!-- For Horizontal Line -->
+                <!--
+             <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:layout_marginLeft="4dip"
+            android:layout_marginRight="4dip"
+            android:background="#aaa"
+            android:layout_alignParentTop="true"/>
+                -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioGroup
+                        android:id="@+id/radio_group_activity_selector"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/radioList"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/List"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+
+                        <View
+                            android:id="@+id/VerticalLine"
+                            android:layout_width="1dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dip"
+                            android:layout_marginTop="4dip"
+                            android:background="#aaa" />
+
+                        <RadioButton
+                            android:id="@+id/radioMap"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_radiobutton3"
+                            android:button="@null"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:text="@string/Map"
+                            android:textColor="@drawable/textcolor_radiobutton" />
+                    </RadioGroup>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:scrollbars="vertical"
+                android:text="List: Shows street shop information in list view"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:scrollbars="vertical"
+                android:text="Map: Shows street shops informaion map view."
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginLeft="4dip"
+                android:layout_marginRight="4dip"
+                android:background="#aaa" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:scrollbars="vertical"
+                android:text="Directions and Maps:"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/btn_directions"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_marginLeft="4dp"
+                        android:background="@drawable/directionclick" />
+
+                    <Button
+                        android:id="@+id/btn_directions"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:layout_marginRight="4dp"
+                        android:background="@drawable/bookmark" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="On Clicking these buttons you will get driving directions from your location to corresponding streetshop."
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
