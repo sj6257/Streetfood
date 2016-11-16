@@ -1,21 +1,12 @@
 Streetfood
 ==========
-Nomadic food is application for foodies in Pune.
 
-We have gathered information about most famous street food stalls around pune.
+Nomadic food is android application for foodies in Pune city to find popular streetfood stalls.
 
-Features:
+Application shows location, driving direction, review of famous street food stalls.
 
--List View : You can get information,address,user ratings.
+Appliction shows you information in list of stalls as wells as pins on the map.
 
--Map View: Location,Driving directions of your food stalls.
+By default application shows nearest famous street shops by finding clients gps location.
 
--We can get nearest famous street shops with your gps location.
-
--We list stalls which cost you no more than Rs.100 .No costly restaurents.
-
--You can review ratings on Quality ,Hygeine,Customer Service.
-
-So welcome aboard.
-
-This application designed and developed by Sandeep Jagtap & Ishan Trikha.
+The project is developed by Sandeep Jagtap & Ishan Trikha.
