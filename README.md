@@ -10,3 +10,6 @@ Appliction shows you information in list of stalls as wells as pins on the map.
 By default application shows nearest famous street shops by finding clients gps location.
 
 The project is developed by Sandeep Jagtap & Ishan Trikha.
+
+Palystore Link:
+https://play.google.com/store/apps/details?id=com.dev.streetfood&hl=en
